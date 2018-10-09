@@ -1,3 +1,3 @@
 # tcc-api
 
-# https://sunflower.ericgottschalk.net/api/{controller}
+# https://lily.ericgottschalk.net/api/
