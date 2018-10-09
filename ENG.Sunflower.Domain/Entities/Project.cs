@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ENG.Sunflower.Domain.Entities
+namespace ENG.Lily.Domain.Entities
 {
     public class Project : Base
     {
@@ -16,6 +16,6 @@ namespace ENG.Sunflower.Domain.Entities
 
         public Developer Developer { get; set; }
 
-        public GameGenre Genre { get; set; }
+        public List<GameGenre> Genres { get; set; }
     }
 }

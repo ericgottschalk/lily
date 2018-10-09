@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ENG.Lily.Domain.Entities
 {
-    public class GameGenre : Base
+    public class Platform : Base
     {
         public string Name { get; set; }
 

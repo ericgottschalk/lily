@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ENG.Sunflower.Domain.Entities
+namespace ENG.Lily.Domain.Entities
 {
     public class Game : Base
     {
@@ -10,7 +10,7 @@ namespace ENG.Sunflower.Domain.Entities
 
         public string CoverUrl { get; set; }
 
-        public GameGenre Genre { get; set; }
+        public List<GameGenre> Genres { get; set; }
 
         public Publisher Publisher { get; set; }
     }

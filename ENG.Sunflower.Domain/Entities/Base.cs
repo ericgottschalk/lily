@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ENG.Sunflower.Domain.Entities
+namespace ENG.Lily.Domain.Entities
 {
     public class Base
     {
