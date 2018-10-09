@@ -5,11 +5,21 @@ VisualStudioVersion = 15.0.27428.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ENG.Lily.Domain", "ENG.Lily.Domain\ENG.Lily.Domain.csproj", "{5FAD7D6A-F2DE-4320-BBE4-DCA674E01DC8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ENG.Lily.Infrastructure", "ENG.Lily.Infrastructure\ENG.Lily.Infrastructure.csproj", "{54AA579D-304C-4874-BAE6-C672B906110B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ENG.Lily.Infrastructure", "ENG.Lily.Infrastructure\ENG.Lily.Infrastructure.csproj", "{54AA579D-304C-4874-BAE6-C672B906110B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ENG.Lily.Infrastructure.DependencyInjection", "ENG.Lily.Infrastructure.DependencyInjection\ENG.Lily.Infrastructure.DependencyInjection.csproj", "{68FD0F13-5FE8-48B8-95A9-F12E718C9B00}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ENG.Lily.Infrastructure.DependencyInjection", "ENG.Lily.Infrastructure.DependencyInjection\ENG.Lily.Infrastructure.DependencyInjection.csproj", "{68FD0F13-5FE8-48B8-95A9-F12E718C9B00}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ENG.Lily.Infrastructure.Repository", "ENG.Lily.Infrastructure.Repository\ENG.Lily.Infrastructure.Repository.csproj", "{D758672B-E3A0-4D82-B84E-43C4459AC410}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ENG.Lily.Infrastructure.Repository", "ENG.Lily.Infrastructure.Repository\ENG.Lily.Infrastructure.Repository.csproj", "{D758672B-E3A0-4D82-B84E-43C4459AC410}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - API", "1 - API", "{DA8906B5-ECF9-4667-B534-F407D33CB749}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Application", "2 - Application", "{108A6506-00A0-4517-9009-30EE1E47DA6D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Domain", "3 - Domain", "{0E57C216-9616-42D5-A354-363EC017FA90}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Service", "4 - Service", "{5EFF8172-EA51-49BC-9F0B-8F223E70A106}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - Infrastructure", "5 - Infrastructure", "{8F653A4D-ABCB-4E9F-B8F6-509E7B046BEB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,6 +46,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5FAD7D6A-F2DE-4320-BBE4-DCA674E01DC8} = {0E57C216-9616-42D5-A354-363EC017FA90}
+		{54AA579D-304C-4874-BAE6-C672B906110B} = {8F653A4D-ABCB-4E9F-B8F6-509E7B046BEB}
+		{68FD0F13-5FE8-48B8-95A9-F12E718C9B00} = {8F653A4D-ABCB-4E9F-B8F6-509E7B046BEB}
+		{D758672B-E3A0-4D82-B84E-43C4459AC410} = {8F653A4D-ABCB-4E9F-B8F6-509E7B046BEB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1D0B970E-7151-4343-911B-E11E502B238A}
