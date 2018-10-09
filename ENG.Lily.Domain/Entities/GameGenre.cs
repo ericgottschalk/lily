@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using ENG.Lily.Domain.Common;
 
 namespace ENG.Lily.Domain.Entities
 {
-    public class GameGenre : Base
+    public class GameGenre : Entity
     {
         public string Name { get; set; }
 

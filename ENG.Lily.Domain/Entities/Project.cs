@@ -1,10 +1,9 @@
-﻿using System;
+﻿using ENG.Lily.Domain.Common;
 using System.Collections.Generic;
-using System.Text;
 
 namespace ENG.Lily.Domain.Entities
 {
-    public class Project : Base
+    public class Project : Entity
     {
         public string Name { get; set; }
 
@@ -17,5 +16,9 @@ namespace ENG.Lily.Domain.Entities
         public Developer Developer { get; set; }
 
         public List<GameGenre> Genres { get; set; }
+
+        public List<Feedback> Feedbacks { get; set; }
+
+        public List<Platform> Platforms { get; set; }
     }
 }

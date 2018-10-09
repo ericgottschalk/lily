@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using ENG.Lily.Domain.Common;
 
 namespace ENG.Lily.Domain.Entities
 {
-    public class User : Base
+    public class User : Entity
     {
         public string Username { get; set; }
 
