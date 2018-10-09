@@ -1,3 +1,3 @@
 # tcc-api
 
-# https://lily.ericgottschalk.net/api/
+# https://lily.ericgottschalk.net/api/status
