@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace ENG.Infraestructure.DependecyInjection
+namespace ENG.Lily.Infraestructure.DependecyInjection
 {
     public static class Service
     {
