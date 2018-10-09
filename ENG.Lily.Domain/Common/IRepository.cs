@@ -18,8 +18,12 @@ namespace ENG.Lily.Domain.Common
 
         T Get(Expression<Func<T, bool>> expression);
 
+        T Get<TProp>(Expression<Func<T, bool>> expression, params Expression<Func<T, TProp>>[] includePaths);
+
         List<T> Find();
 
         List<T> Find(Expression<Func<T, bool>> expression);
+
+        List<T> Find<TProp>(Expression<Func<T, bool>> expression, params Expression<Func<T, TProp>>[] includePaths)
     }
 }
