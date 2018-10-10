@@ -32,7 +32,7 @@ namespace ENG.Lily.Infaestructure.Repository
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new DeveloperMapping());
+            modelBuilder.ApplyConfiguration(new DeveloperConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }

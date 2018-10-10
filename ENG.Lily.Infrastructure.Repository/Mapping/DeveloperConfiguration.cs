@@ -7,7 +7,7 @@ using System.Text;
 
 namespace ENG.Lily.Infrastructure.Repository.Mapping
 {
-    public class DeveloperMapping : IEntityTypeConfiguration<Developer>
+    public class DeveloperConfiguration : IEntityTypeConfiguration<Developer>
     {
         public void Configure(EntityTypeBuilder<Developer> builder)
         {
