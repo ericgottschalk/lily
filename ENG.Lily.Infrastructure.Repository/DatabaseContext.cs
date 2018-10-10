@@ -1,4 +1,5 @@
 ﻿using ENG.Lily.Infraestructure.Runtime;
+using ENG.Lily.Infrastructure.Repository.Mapping;
 using Microsoft.EntityFrameworkCore;
 
 namespace ENG.Lily.Infaestructure.Repository
@@ -31,6 +32,8 @@ namespace ENG.Lily.Infaestructure.Repository
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.ApplyConfiguration(new DeveloperMapping());
+
             base.OnModelCreating(modelBuilder);
         }
     }
