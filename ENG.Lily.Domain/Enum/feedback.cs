@@ -2,10 +2,10 @@
 {
     public enum feedback
     {
-        Nerf = 0,
-        S = 1,
-        Regular = 2,
-        Good = 3,
-        Buff = 4
+        D = 0,
+        C = 1,
+        B = 2,
+        A = 3,
+        S = 4
     }
 }

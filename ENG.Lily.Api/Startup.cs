@@ -1,4 +1,5 @@
-﻿using ENG.Lily.Infaestructure.Repository;
+﻿using ENG.Lily.Application.Mapping;
+using ENG.Lily.Infaestructure.Repository;
 using ENG.Lily.Infraestructure.Runtime;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -27,11 +28,12 @@ namespace ENG.Lily.Api
 
             services.AddCors();
 
-            services.AddMvc();
-
+            MappingConfiguration.Setup(services);
             DependecyInjection.Service.Setup(services);
             DependecyInjection.Application.Setup(services);
             DependecyInjection.Repository.Setup(services);
+
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

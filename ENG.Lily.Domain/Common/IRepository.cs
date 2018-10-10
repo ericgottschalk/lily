@@ -24,6 +24,6 @@ namespace ENG.Lily.Domain.Common
 
         List<T> Find(Expression<Func<T, bool>> expression);
 
-        List<T> Find<TProp>(Expression<Func<T, bool>> expression, params Expression<Func<T, TProp>>[] includePaths)
+        List<T> Find<TProp>(Expression<Func<T, bool>> expression, params Expression<Func<T, TProp>>[] includePaths);
     }
 }
