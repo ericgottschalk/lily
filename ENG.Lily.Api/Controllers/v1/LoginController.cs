@@ -12,6 +12,7 @@ using System.Text;
 
 namespace ENG.Lily.Api.Controllers.v1
 {
+    [Authorize]
     [Produces("application/json")]
     [Route("api/login")]
     public class LoginController : Controller
