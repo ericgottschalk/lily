@@ -9,7 +9,7 @@ namespace ENG.Lily.Domain.Entities
 
         public string CoverUrl { get; set; }
 
-        public List<GameGenre> Genres { get; set; }
+        public GameGenre Genre { get; set; }
 
         public Publisher Publisher { get; set; }
     }

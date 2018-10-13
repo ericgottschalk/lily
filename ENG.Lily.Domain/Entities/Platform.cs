@@ -1,4 +1,5 @@
 ﻿using ENG.Lily.Domain.Common;
+using ENG.Lily.Domain.Entities.ManyToMany;
 using System.Collections.Generic;
 
 namespace ENG.Lily.Domain.Entities
@@ -9,6 +10,6 @@ namespace ENG.Lily.Domain.Entities
 
         public string Code { get; set; }
 
-        public List<Project> Projects { get; set; }
+        public List<PlatformProject> Projects { get; set; }
     }
 }

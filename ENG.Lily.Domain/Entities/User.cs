@@ -1,4 +1,6 @@
 ﻿using ENG.Lily.Domain.Common;
+using System;
+using System.Collections.Generic;
 
 namespace ENG.Lily.Domain.Entities
 {
@@ -13,5 +15,7 @@ namespace ENG.Lily.Domain.Entities
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
+
+        public DateTime DateCreate { get; set; }
     }
 }

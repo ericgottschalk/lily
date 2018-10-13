@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace ENG.Lily.Infraestructure.DependecyInjection
+namespace ENG.Lily.Infrastructure.DependencyInjection
 {
-    public static class Application
+    internal static class Application
     {
-        public static void Setup(IServiceCollection services)
+        internal static void Setup(IServiceCollection services)
         {
         }
     }

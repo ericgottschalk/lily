@@ -1,4 +1,6 @@
 ﻿using ENG.Lily.Domain.Common;
+using ENG.Lily.Domain.Entities.ManyToMany;
+using System;
 using System.Collections.Generic;
 
 namespace ENG.Lily.Domain.Entities
@@ -15,10 +17,16 @@ namespace ENG.Lily.Domain.Entities
 
         public Developer Developer { get; set; }
 
-        public List<GameGenre> Genres { get; set; }
+        public GameGenre Genre { get; set; }
 
         public List<Feedback> Feedbacks { get; set; }
 
-        public List<Platform> Platforms { get; set; }
+        public List<Fund> Funds { get; set; }
+
+        public List<PlatformProject> Platforms { get; set; }
+
+        public DateTime DateCreate { get; set; }
+
+        public DateTime TargetReleaseDate { get; set; }
     }
 }

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using DependecyInjection = ENG.Lily.Infraestructure.DependecyInjection;
+using ENG.Lily.Infrastructure.DependencyInjection;
 
 namespace ENG.Lily.Api
 {
@@ -23,15 +23,17 @@ namespace ENG.Lily.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            RuntimeContext.ConnectionString = Configuration.GetConnectionString("ConnectionString");
             services.Configure<GzipCompressionProviderOptions>(options => options.Level = System.IO.Compression.CompressionLevel.Optimal);
             services.AddResponseCompression();
 
             services.AddCors();
 
             MappingConfiguration.Setup(services);
-            DependecyInjection.Service.Setup(services);
-            DependecyInjection.Application.Setup(services);
-            DependecyInjection.Repository.Setup(services);
+            DependencyInjectionConfiguration.Setup(services);
+
+            services.AddDbContext<DatabaseContext>(c =>
+                c.UseSqlServer(RuntimeContext.ConnectionString));
 
             services.AddMvc();
         }
@@ -39,8 +41,6 @@ namespace ENG.Lily.Api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            RuntimeContext.ConnectionString = Configuration.GetConnectionString("ConnectionString");
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

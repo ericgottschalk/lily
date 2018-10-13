@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace ENG.Lily.Infrastructure.Repository.Mapping
 {
-    public class DeveloperConfiguration : IEntityTypeConfiguration<Developer>
+    public class PublisherConfiguration : IEntityTypeConfiguration<Publisher>
     {
-        public void Configure(EntityTypeBuilder<Developer> builder)
+        public void Configure(EntityTypeBuilder<Publisher> builder)
         {
             builder.HasKey(t => t.Id);
             builder.Property(t => t.Username).HasMaxLength(36).IsRequired();
@@ -14,16 +14,15 @@ namespace ENG.Lily.Infrastructure.Repository.Mapping
             builder.Property(t => t.Password).HasMaxLength(64).IsRequired();
             builder.Property(t => t.FirstName).HasMaxLength(250).IsRequired();
             builder.Property(t => t.LastName).HasMaxLength(250).IsRequired();
-            builder.Property(t => t.Cpf).HasMaxLength(9).IsRequired();
             builder.Property(t => t.DateCreate);
+            builder.Property(t => t.CompanyName).HasMaxLength(250).IsRequired();
+            builder.Property(t => t.IsVerified);
 
-            builder.HasMany(t => t.Feedbacks).WithOne(t => t.Developer);
-            builder.HasMany(t => t.Projects).WithOne(t => t.Developer);
-            builder.HasMany(t => t.SendedFunds).WithOne(t => t.Developer);
+            builder.HasMany(t => t.Games).WithOne(t => t.Publisher);
 
             builder.HasIndex(t => t.Username).IsUnique();
             builder.HasIndex(t => t.Email).IsUnique();
-            builder.HasIndex(t => t.Cpf).IsUnique();
+            builder.HasIndex(t => t.CompanyName).IsUnique();
         }
     }
 }

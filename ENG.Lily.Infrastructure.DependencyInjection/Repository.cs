@@ -3,11 +3,11 @@ using ENG.Lily.Infaestructure.Repository;
 using ENG.Lily.Infrastructure.Repository.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace ENG.Lily.Infraestructure.DependecyInjection
+namespace ENG.Lily.Infrastructure.DependencyInjection
 {
-    public static class Repository
+    internal static class Repository
     {
-        public static void Setup(IServiceCollection services)
+        internal static void Setup(IServiceCollection services)
         {
             services.AddScoped(serviceProvider => new DatabaseContext());
 
