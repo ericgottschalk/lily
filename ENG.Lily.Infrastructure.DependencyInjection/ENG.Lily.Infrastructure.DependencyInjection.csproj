@@ -9,7 +9,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ENG.Lily.Application\ENG.Lily.Application.csproj" />
     <ProjectReference Include="..\ENG.Lily.Infrastructure.Repository\ENG.Lily.Infrastructure.Repository.csproj" />
+    <ProjectReference Include="..\ENG.Lily.Service\ENG.Lily.Service.csproj" />
   </ItemGroup>
 
 </Project>

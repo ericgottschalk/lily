@@ -4,9 +4,9 @@ using ENG.Lily.Domain.Entities;
 
 namespace ENG.Lily.Application.Mapping.Profiles
 {
-    public class FeedbackProfile : Profile
+    internal class FeedbackProfile : Profile
     {
-        public FeedbackProfile()
+        internal FeedbackProfile()
         {
             this.CreateMap<Feedback, FeedbackModel>();
             this.CreateMap<FeedbackModel, Feedback>();

@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ENG.Lily.Application.Mapping\ENG.Lily.Application.Mapping.csproj" />
+    <ProjectReference Include="..\ENG.Lily.Service\ENG.Lily.Service.csproj" />
   </ItemGroup>
 
 </Project>

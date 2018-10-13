@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ENG.Lily.Domain\ENG.Lily.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -4,9 +4,9 @@ using ENG.Lily.Domain.Entities;
 
 namespace ENG.Lily.Application.Mapping.Profiles
 {
-    public class GameGenreProfile : Profile
+    internal class GameGenreProfile : Profile
     {
-        public GameGenreProfile()
+        internal GameGenreProfile()
         {
             this.CreateMap<GameGenre, GameGenreModel>();
             this.CreateMap<GameGenreModel, GameGenre>();

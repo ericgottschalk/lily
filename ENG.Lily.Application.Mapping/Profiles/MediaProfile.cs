@@ -4,9 +4,9 @@ using ENG.Lily.Domain.Entities;
 
 namespace ENG.Lily.Application.Mapping.Profiles
 {
-    public class MediaProfile : Profile
+    internal class MediaProfile : Profile
     {
-        public MediaProfile()
+        internal MediaProfile()
         {
             this.CreateMap<Media, MediaModel>();
             this.CreateMap<MediaModel, Media>();

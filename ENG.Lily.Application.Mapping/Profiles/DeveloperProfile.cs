@@ -4,9 +4,9 @@ using ENG.Lily.Domain.Entities;
 
 namespace ENG.Lily.Application.Mapping.Profiles
 {
-    public class DeveloperProfile : Profile
+    internal class DeveloperProfile : Profile
     {
-        public DeveloperProfile()
+        internal DeveloperProfile()
         {
             this.CreateMap<Developer, DeveloperModel>();
             this.CreateMap<DeveloperModel, Developer>();

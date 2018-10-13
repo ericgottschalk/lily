@@ -4,9 +4,9 @@ using ENG.Lily.Domain.Entities;
 
 namespace ENG.Lily.Application.Mapping.Profiles
 {
-    public class ProjectProfile : Profile
+    internal class ProjectProfile : Profile
     {
-        public ProjectProfile()
+        internal ProjectProfile()
         {
             this.CreateMap<Project, ProjectModel>();
             this.CreateMap<ProjectModel, Project>();

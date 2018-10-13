@@ -4,9 +4,9 @@ using ENG.Lily.Domain.Entities;
 
 namespace ENG.Lily.Application.Mapping.Profiles
 {
-    public class PublisherProfile : Profile
+    internal class PublisherProfile : Profile
     {
-        public PublisherProfile()
+        internal PublisherProfile()
         {
             this.CreateMap<Publisher, PublisherModel>();
             this.CreateMap<PublisherModel, Publisher>();

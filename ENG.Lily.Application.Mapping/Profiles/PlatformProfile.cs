@@ -4,9 +4,9 @@ using ENG.Lily.Domain.Entities;
 
 namespace ENG.Lily.Application.Mapping.Profiles
 {
-    public class PlatformProfile : Profile
+    internal class PlatformProfile : Profile
     {
-        public PlatformProfile()
+        internal PlatformProfile()
         {
             this.CreateMap<Platform, PlatformModel>();
             this.CreateMap<PlatformModel, Platform>();

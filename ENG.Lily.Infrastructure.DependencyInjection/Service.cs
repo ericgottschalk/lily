@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using ENG.Lily.Service;
+using ENG.Lily.Service.Contracts;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace ENG.Lily.Infrastructure.DependencyInjection
 {
@@ -6,6 +8,7 @@ namespace ENG.Lily.Infrastructure.DependencyInjection
     {
         internal static void Setup(IServiceCollection services)
         {
+            services.AddTransient<IDeveloperService, DeveloperService>();
         }
     }
 }
