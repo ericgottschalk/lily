@@ -1,13 +1,17 @@
-﻿using ENG.Lily.Application.Mapping;
+﻿using ENG.Lily.Api.Helpers;
+using ENG.Lily.Application.Mapping;
 using ENG.Lily.Infaestructure.Repository;
 using ENG.Lily.Infraestructure.Runtime;
+using ENG.Lily.Infrastructure.DependencyInjection;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ENG.Lily.Infrastructure.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace ENG.Lily.Api
 {
@@ -32,8 +36,9 @@ namespace ENG.Lily.Api
             MappingConfiguration.Setup(services);
             DependencyInjectionConfiguration.Setup(services);
 
-            services.AddDbContext<DatabaseContext>(c =>
-                c.UseSqlServer(RuntimeContext.ConnectionString));
+            services.AddDbContext<DatabaseContext>();
+
+            SetupAuthentication(services);
 
             services.AddMvc();
         }
@@ -69,6 +74,32 @@ namespace ENG.Lily.Api
                     dataContext.Database.Migrate();
                 }
             }
+        }
+
+        private void SetupAuthentication(IServiceCollection services)
+        {
+            var appSettingsSection = Configuration.GetSection("Auth");
+            services.Configure<AuthSettings>(appSettingsSection);
+
+            var appSettings = appSettingsSection.Get<AuthSettings>();
+            var key = Encoding.ASCII.GetBytes(appSettings.Secret);
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(x =>
+            {
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
+            });
         }
     }
 }

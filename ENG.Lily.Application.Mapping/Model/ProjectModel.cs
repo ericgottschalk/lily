@@ -13,7 +13,7 @@ namespace ENG.Lily.Application.Mapping.Model
 
         public string WhyInvest { get; set; }
 
-        public DeveloperModel Developer { get; set; }
+        public UserModel User { get; set; }
 
         public GameGenreModel Genre { get; set; }
 

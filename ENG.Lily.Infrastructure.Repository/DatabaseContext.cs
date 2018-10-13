@@ -27,10 +27,9 @@ namespace ENG.Lily.Infaestructure.Repository
             return result;
         }
 
-        public DbSet<Developer> Developers { get; set; }
+        public DbSet<User> Users { get; set; }
         public DbSet<Feedback> Feedbacks { get; set; }
         public DbSet<Fund> Funds { get; set; }
-        public DbSet<Game> Games { get; set; }
         public DbSet<GameGenre> Genres { get; set; }
         public DbSet<Media> Medias { get; set; }
         public DbSet<Platform> Platforms { get; set; }
@@ -47,15 +46,13 @@ namespace ENG.Lily.Infaestructure.Repository
         {
             modelBuilder.RemovePluralizingTableNameConvention();
 
-            modelBuilder.ApplyConfiguration(new DeveloperConfiguration());
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
             modelBuilder.ApplyConfiguration(new FeedbackConfiguration());
             modelBuilder.ApplyConfiguration(new FundConfiguration());
-            modelBuilder.ApplyConfiguration(new GameConfiguration());
             modelBuilder.ApplyConfiguration(new GameGenreConfiguration());
             modelBuilder.ApplyConfiguration(new MediaConfiguration());
             modelBuilder.ApplyConfiguration(new PlatformConfiguration());
-            modelBuilder.ApplyConfiguration(new ProjectConfiguration());
-            modelBuilder.ApplyConfiguration(new PublisherConfiguration());      
+            modelBuilder.ApplyConfiguration(new ProjectConfiguration());    
 
             base.OnModelCreating(modelBuilder);
         }

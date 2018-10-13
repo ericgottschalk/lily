@@ -11,7 +11,7 @@ namespace ENG.Lily.Infrastructure.DependencyInjection
         {
             services.AddScoped(serviceProvider => new DatabaseContext());
 
-            services.AddTransient<IDeveloperRepository, DeveloperRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
         }
     }
 }

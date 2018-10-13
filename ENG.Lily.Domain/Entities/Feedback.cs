@@ -6,7 +6,7 @@ namespace ENG.Lily.Domain.Entities
 {
     public class Feedback : Entity
     {
-        public Developer Developer { get; set; }
+        public User User { get; set; }
 
         public Project Project { get; set; }
 

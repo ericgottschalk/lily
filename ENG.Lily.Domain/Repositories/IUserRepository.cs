@@ -3,7 +3,7 @@ using ENG.Lily.Domain.Entities;
 
 namespace ENG.Lily.Domain.Repositories
 {
-    public interface IDeveloperRepository : IRepository<Developer>
+    public interface IUserRepository : IRepository<User>
     {
     }
 }

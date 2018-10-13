@@ -15,7 +15,7 @@ namespace ENG.Lily.Domain.Entities
 
         public string WhyInvest { get; set; }
 
-        public Developer Developer { get; set; }
+        public User User { get; set; }
 
         public GameGenre Genre { get; set; }
 

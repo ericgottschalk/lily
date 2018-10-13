@@ -19,52 +19,6 @@ namespace ENG.Lily.Infrastructure.Repository.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("ENG.Lily.Domain.Entities.Developer", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Cpf")
-                        .IsRequired()
-                        .HasMaxLength(9);
-
-                    b.Property<DateTime>("DateCreate");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(250);
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(250);
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(250);
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasMaxLength(64);
-
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasMaxLength(36);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Cpf")
-                        .IsUnique();
-
-                    b.HasIndex("Email")
-                        .IsUnique();
-
-                    b.HasIndex("Username")
-                        .IsUnique();
-
-                    b.ToTable("Developer");
-                });
-
             modelBuilder.Entity("ENG.Lily.Domain.Entities.Feedback", b =>
                 {
                     b.Property<int>("Id")
@@ -73,8 +27,6 @@ namespace ENG.Lily.Infrastructure.Repository.Migrations
 
                     b.Property<DateTime>("DateCreate");
 
-                    b.Property<int?>("DeveloperId");
-
                     b.Property<int>("Level");
 
                     b.Property<int?>("ProjectId");
@@ -82,11 +34,13 @@ namespace ENG.Lily.Infrastructure.Repository.Migrations
                     b.Property<string>("Text")
                         .HasMaxLength(300);
 
+                    b.Property<int?>("UserId");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("DeveloperId");
-
                     b.HasIndex("ProjectId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Feedback");
                 });
@@ -107,8 +61,6 @@ namespace ENG.Lily.Infrastructure.Repository.Migrations
 
                     b.Property<DateTime>("DateCreate");
 
-                    b.Property<int?>("DeveloperId");
-
                     b.Property<bool>("IsConfirmed");
 
                     b.Property<int?>("ProjectId");
@@ -116,39 +68,15 @@ namespace ENG.Lily.Infrastructure.Repository.Migrations
                     b.Property<string>("TransactionId")
                         .IsRequired();
 
-                    b.HasKey("Id");
+                    b.Property<int?>("UserId");
 
-                    b.HasIndex("DeveloperId");
+                    b.HasKey("Id");
 
                     b.HasIndex("ProjectId");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("Fund");
-                });
-
-            modelBuilder.Entity("ENG.Lily.Domain.Entities.Game", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("CoverUrl")
-                        .IsRequired();
-
-                    b.Property<int?>("GenreId");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(300);
-
-                    b.Property<int?>("PublisherId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GenreId");
-
-                    b.HasIndex("PublisherId");
-
-                    b.ToTable("Game");
                 });
 
             modelBuilder.Entity("ENG.Lily.Domain.Entities.GameGenre", b =>
@@ -244,8 +172,6 @@ namespace ENG.Lily.Infrastructure.Repository.Migrations
                         .IsRequired()
                         .HasMaxLength(1500);
 
-                    b.Property<int?>("DeveloperId");
-
                     b.Property<int?>("GenreId");
 
                     b.Property<string>("Name")
@@ -253,6 +179,8 @@ namespace ENG.Lily.Infrastructure.Repository.Migrations
                         .HasMaxLength(250);
 
                     b.Property<DateTime>("TargetReleaseDate");
+
+                    b.Property<int?>("UserId");
 
                     b.Property<string>("WhyInvest")
                         .IsRequired()
@@ -262,24 +190,24 @@ namespace ENG.Lily.Infrastructure.Repository.Migrations
 
                     b.HasIndex("DateCreate");
 
-                    b.HasIndex("DeveloperId");
-
                     b.HasIndex("GenreId");
 
                     b.HasIndex("Name");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("Project");
                 });
 
-            modelBuilder.Entity("ENG.Lily.Domain.Entities.Publisher", b =>
+            modelBuilder.Entity("ENG.Lily.Domain.Entities.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CompanyName")
+                    b.Property<string>("Cpf")
                         .IsRequired()
-                        .HasMaxLength(250);
+                        .HasMaxLength(9);
 
                     b.Property<DateTime>("DateCreate");
 
@@ -290,8 +218,6 @@ namespace ENG.Lily.Infrastructure.Repository.Migrations
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasMaxLength(250);
-
-                    b.Property<bool>("IsVerified");
 
                     b.Property<string>("LastName")
                         .IsRequired()
@@ -307,7 +233,7 @@ namespace ENG.Lily.Infrastructure.Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CompanyName")
+                    b.HasIndex("Cpf")
                         .IsUnique();
 
                     b.HasIndex("Email")
@@ -316,40 +242,29 @@ namespace ENG.Lily.Infrastructure.Repository.Migrations
                     b.HasIndex("Username")
                         .IsUnique();
 
-                    b.ToTable("Publisher");
+                    b.ToTable("User");
                 });
 
             modelBuilder.Entity("ENG.Lily.Domain.Entities.Feedback", b =>
                 {
-                    b.HasOne("ENG.Lily.Domain.Entities.Developer", "Developer")
-                        .WithMany("Feedbacks")
-                        .HasForeignKey("DeveloperId");
-
                     b.HasOne("ENG.Lily.Domain.Entities.Project", "Project")
                         .WithMany("Feedbacks")
                         .HasForeignKey("ProjectId");
+
+                    b.HasOne("ENG.Lily.Domain.Entities.User", "User")
+                        .WithMany("Feedbacks")
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("ENG.Lily.Domain.Entities.Fund", b =>
                 {
-                    b.HasOne("ENG.Lily.Domain.Entities.Developer", "Developer")
-                        .WithMany("SendedFunds")
-                        .HasForeignKey("DeveloperId");
-
                     b.HasOne("ENG.Lily.Domain.Entities.Project", "Project")
                         .WithMany("Funds")
                         .HasForeignKey("ProjectId");
-                });
 
-            modelBuilder.Entity("ENG.Lily.Domain.Entities.Game", b =>
-                {
-                    b.HasOne("ENG.Lily.Domain.Entities.GameGenre", "Genre")
-                        .WithMany()
-                        .HasForeignKey("GenreId");
-
-                    b.HasOne("ENG.Lily.Domain.Entities.Publisher", "Publisher")
-                        .WithMany("Games")
-                        .HasForeignKey("PublisherId");
+                    b.HasOne("ENG.Lily.Domain.Entities.User", "User")
+                        .WithMany("SendedFunds")
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("ENG.Lily.Domain.Entities.ManyToMany.PlatformProject", b =>
@@ -372,13 +287,13 @@ namespace ENG.Lily.Infrastructure.Repository.Migrations
 
             modelBuilder.Entity("ENG.Lily.Domain.Entities.Project", b =>
                 {
-                    b.HasOne("ENG.Lily.Domain.Entities.Developer", "Developer")
-                        .WithMany("Projects")
-                        .HasForeignKey("DeveloperId");
-
                     b.HasOne("ENG.Lily.Domain.Entities.GameGenre", "Genre")
                         .WithMany()
                         .HasForeignKey("GenreId");
+
+                    b.HasOne("ENG.Lily.Domain.Entities.User", "User")
+                        .WithMany("Projects")
+                        .HasForeignKey("UserId");
                 });
 #pragma warning restore 612, 618
         }

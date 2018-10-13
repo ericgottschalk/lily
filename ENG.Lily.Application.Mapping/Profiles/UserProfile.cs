@@ -4,12 +4,12 @@ using ENG.Lily.Domain.Entities;
 
 namespace ENG.Lily.Application.Mapping.Profiles
 {
-    internal class GameProfile : Profile
+    internal class UserProfile : Profile
     {
-        internal GameProfile()
+        internal UserProfile()
         {
-            this.CreateMap<Game, GameModel>();
-            this.CreateMap<GameModel, Game>();
+            this.CreateMap<User, UserModel>();
+            this.CreateMap<UserModel, User>();
         }
     }
 }

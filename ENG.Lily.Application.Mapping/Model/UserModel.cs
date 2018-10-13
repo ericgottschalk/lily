@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ENG.Lily.Application.Mapping.Model
 {
@@ -15,5 +16,13 @@ namespace ENG.Lily.Application.Mapping.Model
         public string LastName { get; set; }
 
         public DateTime DateCreate { get; set; }
+
+        public string Cpf { get; set; }
+
+        public List<ProjectModel> Projects { get; set; }
+
+        public List<FeedbackModel> Feedbacks { get; set; }
+
+        public string Token { get; set; }
     }
 }

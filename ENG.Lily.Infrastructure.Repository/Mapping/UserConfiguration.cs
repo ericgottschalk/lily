@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace ENG.Lily.Infrastructure.Repository.Mapping
 {
-    public class DeveloperConfiguration : IEntityTypeConfiguration<Developer>
+    public class UserConfiguration : IEntityTypeConfiguration<User>
     {
-        public void Configure(EntityTypeBuilder<Developer> builder)
+        public void Configure(EntityTypeBuilder<User> builder)
         {
             builder.HasKey(t => t.Id);
             builder.Property(t => t.Username).HasMaxLength(36).IsRequired();
@@ -17,9 +17,9 @@ namespace ENG.Lily.Infrastructure.Repository.Mapping
             builder.Property(t => t.Cpf).HasMaxLength(9).IsRequired();
             builder.Property(t => t.DateCreate);
 
-            builder.HasMany(t => t.Feedbacks).WithOne(t => t.Developer);
-            builder.HasMany(t => t.Projects).WithOne(t => t.Developer);
-            builder.HasMany(t => t.SendedFunds).WithOne(t => t.Developer);
+            builder.HasMany(t => t.Feedbacks).WithOne(t => t.User);
+            builder.HasMany(t => t.Projects).WithOne(t => t.User);
+            builder.HasMany(t => t.SendedFunds).WithOne(t => t.User);
 
             builder.HasIndex(t => t.Username).IsUnique();
             builder.HasIndex(t => t.Email).IsUnique();

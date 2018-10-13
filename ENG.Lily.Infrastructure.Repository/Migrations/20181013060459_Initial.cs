@@ -9,25 +9,6 @@ namespace ENG.Lily.Infrastructure.Repository.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Developer",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Username = table.Column<string>(maxLength: 36, nullable: false),
-                    Password = table.Column<string>(maxLength: 64, nullable: false),
-                    Email = table.Column<string>(maxLength: 250, nullable: false),
-                    FirstName = table.Column<string>(maxLength: 250, nullable: false),
-                    LastName = table.Column<string>(maxLength: 250, nullable: false),
-                    DateCreate = table.Column<DateTime>(nullable: false),
-                    Cpf = table.Column<string>(maxLength: 9, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Developer", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "GameGenre",
                 columns: table => new
                 {
@@ -56,7 +37,7 @@ namespace ENG.Lily.Infrastructure.Repository.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Publisher",
+                name: "User",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -67,12 +48,11 @@ namespace ENG.Lily.Infrastructure.Repository.Migrations
                     FirstName = table.Column<string>(maxLength: 250, nullable: false),
                     LastName = table.Column<string>(maxLength: 250, nullable: false),
                     DateCreate = table.Column<DateTime>(nullable: false),
-                    CompanyName = table.Column<string>(maxLength: 250, nullable: false),
-                    IsVerified = table.Column<bool>(nullable: false)
+                    Cpf = table.Column<string>(maxLength: 9, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Publisher", x => x.Id);
+                    table.PrimaryKey("PK_User", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -84,7 +64,7 @@ namespace ENG.Lily.Infrastructure.Repository.Migrations
                     Name = table.Column<string>(maxLength: 250, nullable: false),
                     Description = table.Column<string>(maxLength: 1500, nullable: false),
                     WhyInvest = table.Column<string>(maxLength: 750, nullable: false),
-                    DeveloperId = table.Column<int>(nullable: true),
+                    UserId = table.Column<int>(nullable: true),
                     GenreId = table.Column<int>(nullable: true),
                     DateCreate = table.Column<DateTime>(nullable: false),
                     TargetReleaseDate = table.Column<DateTime>(nullable: false)
@@ -93,43 +73,15 @@ namespace ENG.Lily.Infrastructure.Repository.Migrations
                 {
                     table.PrimaryKey("PK_Project", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Project_Developer_DeveloperId",
-                        column: x => x.DeveloperId,
-                        principalTable: "Developer",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
                         name: "FK_Project_GameGenre_GenreId",
                         column: x => x.GenreId,
                         principalTable: "GameGenre",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Game",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(maxLength: 300, nullable: false),
-                    CoverUrl = table.Column<string>(nullable: false),
-                    GenreId = table.Column<int>(nullable: true),
-                    PublisherId = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Game", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Game_GameGenre_GenreId",
-                        column: x => x.GenreId,
-                        principalTable: "GameGenre",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Game_Publisher_PublisherId",
-                        column: x => x.PublisherId,
-                        principalTable: "Publisher",
+                        name: "FK_Project_User_UserId",
+                        column: x => x.UserId,
+                        principalTable: "User",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -140,7 +92,7 @@ namespace ENG.Lily.Infrastructure.Repository.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    DeveloperId = table.Column<int>(nullable: true),
+                    UserId = table.Column<int>(nullable: true),
                     ProjectId = table.Column<int>(nullable: true),
                     Level = table.Column<int>(nullable: false),
                     Text = table.Column<string>(maxLength: 300, nullable: true),
@@ -150,15 +102,15 @@ namespace ENG.Lily.Infrastructure.Repository.Migrations
                 {
                     table.PrimaryKey("PK_Feedback", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Feedback_Developer_DeveloperId",
-                        column: x => x.DeveloperId,
-                        principalTable: "Developer",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
                         name: "FK_Feedback_Project_ProjectId",
                         column: x => x.ProjectId,
                         principalTable: "Project",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Feedback_User_UserId",
+                        column: x => x.UserId,
+                        principalTable: "User",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -169,7 +121,7 @@ namespace ENG.Lily.Infrastructure.Repository.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    DeveloperId = table.Column<int>(nullable: true),
+                    UserId = table.Column<int>(nullable: true),
                     ProjectId = table.Column<int>(nullable: true),
                     Aumont = table.Column<decimal>(nullable: false),
                     CreditCardLastFourDigits = table.Column<string>(maxLength: 4, nullable: false),
@@ -182,15 +134,15 @@ namespace ENG.Lily.Infrastructure.Repository.Migrations
                 {
                     table.PrimaryKey("PK_Fund", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Fund_Developer_DeveloperId",
-                        column: x => x.DeveloperId,
-                        principalTable: "Developer",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
                         name: "FK_Fund_Project_ProjectId",
                         column: x => x.ProjectId,
                         principalTable: "Project",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Fund_User_UserId",
+                        column: x => x.UserId,
+                        principalTable: "User",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -242,37 +194,14 @@ namespace ENG.Lily.Infrastructure.Repository.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Developer_Cpf",
-                table: "Developer",
-                column: "Cpf",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Developer_Email",
-                table: "Developer",
-                column: "Email",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Developer_Username",
-                table: "Developer",
-                column: "Username",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Feedback_DeveloperId",
-                table: "Feedback",
-                column: "DeveloperId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Feedback_ProjectId",
                 table: "Feedback",
                 column: "ProjectId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Fund_DeveloperId",
-                table: "Fund",
-                column: "DeveloperId");
+                name: "IX_Feedback_UserId",
+                table: "Feedback",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Fund_ProjectId",
@@ -280,14 +209,9 @@ namespace ENG.Lily.Infrastructure.Repository.Migrations
                 column: "ProjectId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Game_GenreId",
-                table: "Game",
-                column: "GenreId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Game_PublisherId",
-                table: "Game",
-                column: "PublisherId");
+                name: "IX_Fund_UserId",
+                table: "Fund",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_GameGenre_Code",
@@ -322,11 +246,6 @@ namespace ENG.Lily.Infrastructure.Repository.Migrations
                 column: "DateCreate");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Project_DeveloperId",
-                table: "Project",
-                column: "DeveloperId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Project_GenreId",
                 table: "Project",
                 column: "GenreId");
@@ -337,20 +256,25 @@ namespace ENG.Lily.Infrastructure.Repository.Migrations
                 column: "Name");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Publisher_CompanyName",
-                table: "Publisher",
-                column: "CompanyName",
+                name: "IX_Project_UserId",
+                table: "Project",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_User_Cpf",
+                table: "User",
+                column: "Cpf",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Publisher_Email",
-                table: "Publisher",
+                name: "IX_User_Email",
+                table: "User",
                 column: "Email",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Publisher_Username",
-                table: "Publisher",
+                name: "IX_User_Username",
+                table: "User",
                 column: "Username",
                 unique: true);
         }
@@ -364,16 +288,10 @@ namespace ENG.Lily.Infrastructure.Repository.Migrations
                 name: "Fund");
 
             migrationBuilder.DropTable(
-                name: "Game");
-
-            migrationBuilder.DropTable(
                 name: "Media");
 
             migrationBuilder.DropTable(
                 name: "PlatformProject");
-
-            migrationBuilder.DropTable(
-                name: "Publisher");
 
             migrationBuilder.DropTable(
                 name: "Platform");
@@ -382,10 +300,10 @@ namespace ENG.Lily.Infrastructure.Repository.Migrations
                 name: "Project");
 
             migrationBuilder.DropTable(
-                name: "Developer");
+                name: "GameGenre");
 
             migrationBuilder.DropTable(
-                name: "GameGenre");
+                name: "User");
         }
     }
 }

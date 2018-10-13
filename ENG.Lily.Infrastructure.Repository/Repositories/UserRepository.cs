@@ -5,9 +5,9 @@ using ENG.Lily.Infaestructure.Repository.Repositories;
 
 namespace ENG.Lily.Infrastructure.Repository.Repositories
 {
-    public class DeveloperRepository : Repository<Developer>, IDeveloperRepository
+    public class UserRepository : Repository<User>, IUserRepository
     {
-        public DeveloperRepository(DatabaseContext context) 
+        public UserRepository(DatabaseContext context) 
             : base(context)
         {
         }
