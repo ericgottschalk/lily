@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ENG.Lily.Domain\ENG.Lily.Domain.csproj" />
+    <ProjectReference Include="..\ENG.Lily.Infrastructure\ENG.Lily.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,5 +1,6 @@
 ﻿using ENG.Lily.Domain.Entities;
 using ENG.Lily.Domain.Repositories;
+using ENG.Lily.Infrastructure.Security;
 using ENG.Lily.Service.Contracts;
 
 namespace ENG.Lily.Service
@@ -7,6 +8,7 @@ namespace ENG.Lily.Service
     public class UserService : IUserService
     {
         private readonly IUserRepository userRepository;
+
 
         public UserService(IUserRepository userRepository)
         {
@@ -17,6 +19,7 @@ namespace ENG.Lily.Service
         {
             if (user.IsNew())
             {
+                user.Password = Encryption.Encrypt(user.Password);
                 this.userRepository.Add(user);
                 return;
             }
@@ -24,13 +27,15 @@ namespace ENG.Lily.Service
             this.userRepository.Update(user);
         }
 
-        public User Login(string username, string Password)
+        public User Login(string username, string password)
         {
             var user = this.userRepository.Get(t => t.Username == username);
 
             if (user != null)
             {
+                var encryptedPassword = Encryption.Encrypt(password);
 
+                return user.Password == encryptedPassword ? user : null;
             }
 
             return null;
