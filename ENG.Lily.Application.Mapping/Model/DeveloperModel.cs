@@ -7,5 +7,7 @@ namespace ENG.Lily.Application.Mapping.Model
         public string Cpf { get; set; }
 
         public List<ProjectModel> Projects { get; set; }
+
+        public List<FeedbackModel> Feedbacks { get; set; }
     }
 }

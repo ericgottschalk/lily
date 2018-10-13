@@ -1,4 +1,6 @@
-﻿namespace ENG.Lily.Application.Mapping.Model
+﻿using System;
+
+namespace ENG.Lily.Application.Mapping.Model
 {
     public class FeedbackModel : Model
     {
@@ -9,6 +11,8 @@
         public feedbackModel Level { get; set; }
 
         public string Text { get; set; }
+
+        public DateTime DateCreate { get; set; }
     }
 
     public enum feedbackModel

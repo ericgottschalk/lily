@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ENG.Lily.Application.Mapping.Model
 {
@@ -14,10 +15,16 @@ namespace ENG.Lily.Application.Mapping.Model
 
         public DeveloperModel Developer { get; set; }
 
-        public List<GameGenreModel> Genres { get; set; }
+        public GameGenreModel Genre { get; set; }
 
         public List<FeedbackModel> Feedbacks { get; set; }
 
         public List<PlatformModel> Platforms { get; set; }
+
+        public DateTime DateCreate { get; set; }
+
+        public DateTime TargetReleaseDate { get; set; }
+
+        public decimal Funds { get; set; }
     }
 }

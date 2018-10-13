@@ -1,4 +1,6 @@
-﻿namespace ENG.Lily.Application.Mapping.Model
+﻿using System;
+
+namespace ENG.Lily.Application.Mapping.Model
 {
     public class UserModel : Model
     {
@@ -11,5 +13,7 @@
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
+
+        public DateTime DateCreate { get; set; }
     }
 }
