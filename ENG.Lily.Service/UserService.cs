@@ -9,7 +9,6 @@ namespace ENG.Lily.Service
     {
         private readonly IUserRepository userRepository;
 
-
         public UserService(IUserRepository userRepository)
         {
             this.userRepository = userRepository;
@@ -39,6 +38,17 @@ namespace ENG.Lily.Service
             }
 
             return null;
+        }
+
+        public User Get(int id)
+        {
+            var user = this.userRepository.Get(id, t => t.Projects);
+
+            user.Password = string.Empty;
+            user.Cpf = string.Empty;
+            user.Email = string.Empty;
+
+            return user;
         }
     }
 }

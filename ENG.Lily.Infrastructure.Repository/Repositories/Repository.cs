@@ -39,12 +39,22 @@ namespace ENG.Lily.Infaestructure.Repository.Repositories
             return this.Set.AsNoTracking().ToList();
         }
 
+        public List<T> Find(int page, int pageSize)
+        {
+            return this.Set.AsNoTracking().Skip(page * pageSize).Take(pageSize).ToList();
+        }
+
         public List<T> Find(Expression<Func<T, bool>> expression)
         {
             return this.Set.Where(expression).AsNoTracking().ToList();
         }
 
-        public List<T> Find<TProp>(Expression<Func<T, bool>> expression, params Expression<Func<T, TProp>>[] includePaths)
+        public List<T> Find(Expression<Func<T, bool>> expression, int page, int pageSize)
+        {
+            return this.Set.Where(expression).AsNoTracking().Skip(page * pageSize).Take(pageSize).ToList();
+        }
+
+        public List<T> Find(Expression<Func<T, bool>> expression, params Expression<Func<T, object>>[] includePaths)
         {
             var set = this.Set;
 
@@ -56,9 +66,33 @@ namespace ENG.Lily.Infaestructure.Repository.Repositories
             return set.Where(expression).AsNoTracking().ToList();
         }
 
+        public List<T> Find(Expression<Func<T, bool>> expression, int page, int pageSize, params Expression<Func<T, object>>[] includePaths)
+        {
+            var set = this.Set;
+
+            foreach (var include in includePaths)
+            {
+                set.Include(include);
+            }
+
+            return set.Where(expression).AsNoTracking().Skip(page * pageSize).Take(pageSize).ToList();
+        }
+
         public T Get(int id)
         {
             return this.Set.FirstOrDefault(t => t.Id == id);
+        }
+
+        public T Get(int id, params Expression<Func<T, object>>[] includePaths)
+        {
+            var set = this.Set;
+
+            foreach (var include in includePaths)
+            {
+                set.Include(include);
+            }
+
+            return set.FirstOrDefault(t => t.Id == id);
         }
 
         public T Get(Expression<Func<T, bool>> expression)
@@ -66,7 +100,7 @@ namespace ENG.Lily.Infaestructure.Repository.Repositories
             return this.Set.FirstOrDefault(expression);
         }
 
-        public T Get<TProp>(Expression<Func<T, bool>> expression, params Expression<Func<T, TProp>>[] includePaths)
+        public T Get(Expression<Func<T, bool>> expression, params Expression<Func<T, object>>[] includePaths)
         {
             var set = this.Set;
 
@@ -81,6 +115,6 @@ namespace ENG.Lily.Infaestructure.Repository.Repositories
         public void Update(T entity)
         {
             this.context.Update<T>(entity);
-        } 
+        }
     }
 }

@@ -17,13 +17,22 @@ namespace ENG.Lily.Api.Controllers.v1
             this.userApplication = userApplication;
         }
 
-        [HttpPost]
+        [HttpPost("register")]
         [AllowAnonymous]
         public IActionResult Register([FromBody] UserModel model)
         {
             this.userApplication.Save(model);
 
             return Ok();
+        }
+
+        [HttpGet("get/{id:int}")]
+        [AllowAnonymous]
+        public IActionResult Get(int id)
+        {
+            var user = this.userApplication.Get(id);
+
+            return Ok(user);
         }
     }
 }

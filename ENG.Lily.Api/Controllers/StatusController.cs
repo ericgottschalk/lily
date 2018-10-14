@@ -3,7 +3,7 @@
 namespace ENG.Lily.Api.Controllers
 {
     [Produces("application/json")]
-    [Route("api/Status")]
+    [Route("api/status")]
     public class StatusController : Controller
     {
         public IActionResult Status()

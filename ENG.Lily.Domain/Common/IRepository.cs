@@ -16,14 +16,22 @@ namespace ENG.Lily.Domain.Common
 
         T Get(int id);
 
+        T Get(int id, params Expression<Func<T, object>>[] includePaths);
+        
         T Get(Expression<Func<T, bool>> expression);
 
-        T Get<TProp>(Expression<Func<T, bool>> expression, params Expression<Func<T, TProp>>[] includePaths);
+        T Get(Expression<Func<T, bool>> expression, params Expression<Func<T, object>>[] includePaths);
 
         List<T> Find();
 
+        List<T> Find(int page, int pageSize);
+
         List<T> Find(Expression<Func<T, bool>> expression);
 
-        List<T> Find<TProp>(Expression<Func<T, bool>> expression, params Expression<Func<T, TProp>>[] includePaths);
+        List<T> Find(Expression<Func<T, bool>> expression, int page, int pageSize);
+
+        List<T> Find(Expression<Func<T, bool>> expression, params Expression<Func<T, object>>[] includePaths);
+
+        List<T> Find(Expression<Func<T, bool>> expression, int page, int pageSize, params Expression<Func<T, object>>[] includePaths);
     }
 }

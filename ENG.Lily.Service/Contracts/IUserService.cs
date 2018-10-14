@@ -7,5 +7,7 @@ namespace ENG.Lily.Service.Contracts
         void Save(User user);
 
         User Login(string username, string Password);
+
+        User Get(int id);
     }
 }

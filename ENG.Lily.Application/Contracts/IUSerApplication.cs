@@ -7,5 +7,7 @@ namespace ENG.Lily.Application.Contracts
         void Save(UserModel model);
 
         UserModel Login(LoginModel model);
+
+        UserModel Get(int id);
     }
 }

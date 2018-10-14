@@ -20,6 +20,13 @@ namespace ENG.Lily.Application
             this.userService = userService;
         }
 
+        public UserModel Get(int id)
+        {
+            var domainUser = this.userService.Get(id);
+
+            return this.mapper.Map<UserModel>(domainUser);
+        }
+
         public UserModel Login(LoginModel model)
         {
             var domainUser = this.userService.Login(model.Username, model.Password);
