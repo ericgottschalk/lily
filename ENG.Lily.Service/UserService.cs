@@ -2,6 +2,7 @@
 using ENG.Lily.Domain.Repositories;
 using ENG.Lily.Infrastructure.Security;
 using ENG.Lily.Service.Contracts;
+using System;
 
 namespace ENG.Lily.Service
 {
@@ -19,6 +20,7 @@ namespace ENG.Lily.Service
             if (user.IsNew())
             {
                 user.Password = Encryption.Encrypt(user.Password);
+                user.DateCreate = DateTime.Now;
                 this.userRepository.Add(user);
                 return;
             }
