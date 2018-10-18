@@ -7,7 +7,7 @@ namespace ENG.Lily.Api.Controllers.v1
 {
     [Authorize]
     [Produces("application/json")]
-    [Route("api/developer")]
+    [Route("api/user")]
     public class UserController : Controller
     {
         private readonly IUserApplication userApplication;
