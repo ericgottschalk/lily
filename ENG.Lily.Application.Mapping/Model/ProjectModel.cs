@@ -23,7 +23,7 @@ namespace ENG.Lily.Application.Mapping.Model
 
         public DateTime DateCreate { get; set; }
 
-        public DateTime TargetReleaseDate { get; set; }
+        public int TargetReleaseYear { get; set; }
 
         public decimal Funds { get; set; }
     }

@@ -8,5 +8,11 @@ namespace ENG.Lily.Service.Contracts
         List<Project> GetNewestProjects();
 
         Project Get(int id);
+
+        List<GameGenre> GetGenres();
+
+        void Save(Project domainProject);
+   
+        List<Platform> GetPlatforms();
     }
 }

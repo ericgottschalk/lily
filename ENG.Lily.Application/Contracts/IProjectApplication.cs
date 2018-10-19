@@ -10,5 +10,9 @@ namespace ENG.Lily.Application.Contracts
         List<ProjectModel> GetNewestProjects();
 
         ProjectModel Get(int id);
+
+        List<GameGenreModel> GetGenres();
+
+        List<PlatformModel> GetPlatfoms();
     }
 }

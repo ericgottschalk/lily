@@ -13,7 +13,7 @@ namespace ENG.Lily.Infrastructure.Repository.Mapping
             builder.Property(t => t.Name).HasMaxLength(250).IsRequired();
             builder.Property(t => t.WhyInvest).HasMaxLength(750).IsRequired();
             builder.Property(t => t.DateCreate);
-            builder.Property(t => t.TargetReleaseDate);
+            builder.Property(t => t.TargetReleaseYear);
 
             builder.HasOne(t => t.Genre);
             builder.HasMany(t => t.Platforms);

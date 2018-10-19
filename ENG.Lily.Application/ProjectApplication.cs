@@ -37,7 +37,19 @@ namespace ENG.Lily.Application
         public void Save(ProjectModel model)
         {
             var domainProject = this.mapper.Map<Project>(model);         
-            this.projectService.GetNewestProjects();
+            this.projectService.Save(domainProject);
+        }
+
+        public List<GameGenreModel> GetGenres()
+        {
+            var domainGenres = this.projectService.GetGenres();
+            return this.mapper.Map<List<GameGenreModel>>(domainGenres);
+        }
+
+        public List<PlatformModel> GetPlatfoms()
+        {
+            var domainPlatforms = this.projectService.GetPlatforms();
+            return this.mapper.Map<List<PlatformModel>>(domainPlatforms);
         }
     }
 }

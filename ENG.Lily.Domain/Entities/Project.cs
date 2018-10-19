@@ -27,6 +27,6 @@ namespace ENG.Lily.Domain.Entities
 
         public DateTime DateCreate { get; set; }
 
-        public DateTime TargetReleaseDate { get; set; }
+        public int TargetReleaseYear { get; set; }
     }
 }

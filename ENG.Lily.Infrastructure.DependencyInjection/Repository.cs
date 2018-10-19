@@ -10,9 +10,10 @@ namespace ENG.Lily.Infrastructure.DependencyInjection
         internal static void Setup(IServiceCollection services)
         {
             services.AddScoped(serviceProvider => new DatabaseContext());
-
+            
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IProjectRepository, ProjectRepository>();
+            services.AddTransient<IGameGenreRepository, GameGenreRepository>();
         }
     }
 }

@@ -31,8 +31,7 @@ namespace ENG.Lily.Api.Controllers.v1
             return Ok(projects);
         }
 
-        [HttpGet("save")]
-        [HttpPost]
+        [HttpPost("save")]
         public IActionResult Save([FromBody] ProjectModel model)
         {
             this.projectApplication.Save(model);
@@ -47,6 +46,24 @@ namespace ENG.Lily.Api.Controllers.v1
             var project = this.projectApplication.Get(id);
 
             return Ok(project);
+        }
+
+        [HttpGet("genres")]
+        [AllowAnonymous]
+        public IActionResult GetGenres()
+        {
+            var genres = this.projectApplication.GetGenres();
+
+            return Ok(genres);
+        }
+
+        [HttpGet("platforms")]
+        [AllowAnonymous]
+        public IActionResult GetPlatforms()
+        {
+            var platforms = this.projectApplication.GetPlatfoms();
+
+            return Ok(platforms);
         }
     }
 }
