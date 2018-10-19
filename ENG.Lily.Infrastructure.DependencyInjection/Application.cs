@@ -9,6 +9,7 @@ namespace ENG.Lily.Infrastructure.DependencyInjection
         internal static void Setup(IServiceCollection services)
         {
             services.AddTransient<IUserApplication, UserApplication>();
+            services.AddTransient<IProjectApplication, ProjectApplication>();
         }
     }
 }
