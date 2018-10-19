@@ -32,6 +32,7 @@ namespace ENG.Lily.Api.Controllers.v1
         }
 
         [HttpPost("save")]
+        [AllowAnonymous]
         public IActionResult Save([FromBody] ProjectModel model)
         {
             this.projectApplication.Save(model);

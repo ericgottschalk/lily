@@ -47,7 +47,6 @@ namespace ENG.Lily.Service
             var user = this.userRepository.Get(id, t => t.Projects);
 
             user.Password = string.Empty;
-            user.Cpf = string.Empty;
             user.Email = string.Empty;
 
             return user;

@@ -17,8 +17,6 @@ namespace ENG.Lily.Application.Mapping.Model
 
         public DateTime DateCreate { get; set; }
 
-        public string Cpf { get; set; }
-
         public List<ProjectModel> Projects { get; set; }
 
         public List<FeedbackModel> Feedbacks { get; set; }

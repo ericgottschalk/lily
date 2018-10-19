@@ -14,7 +14,6 @@ namespace ENG.Lily.Infrastructure.Repository.Mapping
             builder.Property(t => t.Password).HasMaxLength(64).IsRequired();
             builder.Property(t => t.FirstName).HasMaxLength(250).IsRequired();
             builder.Property(t => t.LastName).HasMaxLength(250).IsRequired();
-            builder.Property(t => t.Cpf).HasMaxLength(9).IsRequired();
             builder.Property(t => t.DateCreate);
 
             builder.HasMany(t => t.Feedbacks).WithOne(t => t.User);
@@ -23,7 +22,6 @@ namespace ENG.Lily.Infrastructure.Repository.Mapping
 
             builder.HasIndex(t => t.Username).IsUnique();
             builder.HasIndex(t => t.Email).IsUnique();
-            builder.HasIndex(t => t.Cpf).IsUnique();
         }
     }
 }

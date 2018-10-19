@@ -24,7 +24,6 @@ namespace ENG.Lily.Service
             var project = this.projectRepository.Get(id, t => t.Feedbacks, t => t.Funds, t => t.Genre, t => t.Media, t => t.Platforms, t => t.User);
 
             project.User.Password = string.Empty;
-            project.User.Cpf = string.Empty;
             project.User.Email = string.Empty;
 
             return project;
