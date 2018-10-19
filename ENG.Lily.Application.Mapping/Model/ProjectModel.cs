@@ -19,12 +19,14 @@ namespace ENG.Lily.Application.Mapping.Model
 
         public List<FeedbackModel> Feedbacks { get; set; }
 
-        public List<PlatformModel> Platforms { get; set; }
+        public List<PlatformModel> PlatformsRaw { get; set; }
+
+        public List<PlatformProjectModel> Platforms { get; set; }
 
         public DateTime DateCreate { get; set; }
 
         public int TargetReleaseYear { get; set; }
 
-        public decimal Funds { get; set; }
+        public decimal FundsAumont { get; set; }
     }
 }

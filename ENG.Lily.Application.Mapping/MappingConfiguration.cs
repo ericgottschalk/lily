@@ -16,6 +16,7 @@ namespace ENG.Lily.Application.Mapping
                 config.AddProfile(new MediaProfile());
                 config.AddProfile(new PlatformProfile());
                 config.AddProfile(new ProjectProfile());
+                config.AddProfile(new PlatformProjectModelProfile());
             });
 
             var mapper = profiles.CreateMapper();
