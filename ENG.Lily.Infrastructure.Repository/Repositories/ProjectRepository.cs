@@ -12,7 +12,7 @@ namespace ENG.Lily.Infrastructure.Repository.Repositories
 {
     public class ProjectRepository : Repository<Project>, IProjectRepository
     {
-        public ProjectRepository(DatabaseContext context) 
+        public ProjectRepository(DatabaseContext context)
             : base(context)
         {
         }
@@ -29,17 +29,33 @@ namespace ENG.Lily.Infrastructure.Repository.Repositories
 
         public List<Project> FindWithPlatforms(Expression<Func<Project, bool>> expression, params Expression<Func<Project, object>>[] includePaths)
         {
-            var set = this.Set.Include(t => t.Platforms).ThenInclude(t => t.Platform).AsQueryable();
-
-            foreach (var include in includePaths)
-            {
-                set = set.Include(include);
-            }
+            var set = this.IncludeSetWithPlatform(includePaths);
 
             return set.Where(expression).AsNoTracking().ToList();
         }
 
         public List<Project> FindWithPlatforms(Expression<Func<Project, bool>> expression, int page, int pageSize, params Expression<Func<Project, object>>[] includePaths)
+        {
+            var set = this.IncludeSetWithPlatform(includePaths);
+
+            return set.Where(expression).AsNoTracking().Skip(page * pageSize).Take(pageSize).ToList();
+        }
+
+        public List<Project> FindWithPlatforms(params Expression<Func<Project, object>>[] includePaths)
+        {
+            var set = this.IncludeSetWithPlatform(includePaths);
+
+            return set.AsNoTracking().ToList();
+        }
+
+        public List<Project> FindWithPlatforms(int page, int pageSize, params Expression<Func<Project, object>>[] includePaths)
+        {
+            var set = this.IncludeSetWithPlatform(includePaths);
+
+            return set.AsNoTracking().Skip(page * pageSize).Take(pageSize).ToList();
+        }
+
+        private IQueryable<Project> IncludeSetWithPlatform(params Expression<Func<Project, object>>[] includePaths)
         {
             var set = this.Set.Include(t => t.Platforms).ThenInclude(t => t.Platform).AsQueryable();
 
@@ -48,7 +64,7 @@ namespace ENG.Lily.Infrastructure.Repository.Repositories
                 set = set.Include(include);
             }
 
-            return set.Where(expression).AsNoTracking().Skip(page * pageSize).Take(pageSize).ToList();
+            return set;
         }
     }
 }

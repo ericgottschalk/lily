@@ -82,6 +82,7 @@ namespace ENG.Lily.Api
             services.Configure<AuthSettings>(appSettingsSection);
 
             var appSettings = appSettingsSection.Get<AuthSettings>();
+            RuntimeContext.SecretKey = appSettings.Secret;
             var key = Encoding.ASCII.GetBytes(appSettings.Secret);
             services.AddAuthentication(x =>
             {

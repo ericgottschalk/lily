@@ -35,7 +35,11 @@ namespace ENG.Lily.Service
 
         public List<Project> GetNewestProjects()
         {
-            return this.projectRepository.FindTopOrderedByDate(10);
+            var projects = this.projectRepository.FindWithPlatforms(t => t.Genre, t => t.Media).OrderByDescending(t => t.DateCreate).ToList();
+
+            this.SetPlatformsRaw(projects);
+
+            return projects;
         }
 
         public List<GameGenre> GetGenres()
@@ -72,22 +76,28 @@ namespace ENG.Lily.Service
         {
             var projects = this.projectRepository.FindWithPlatforms(t => t.UserId == idUser, t => t.Genre, t => t.Media).OrderByDescending(t => t.DateCreate).ToList();
 
+            this.SetPlatformsRaw(projects);
+
+            return projects;
+        }
+
+        private void SetPlatformsRaw(List<Project> projects)
+        {
             foreach (var project in projects)
             {
                 if (project.Platforms == null)
                 {
                     continue;
                 }
+
                 foreach (var platform in project.Platforms)
                 {
                     platform.Project = null;
                     platform.Platform.Projects = null;
                 }
 
-                project.PlatformsRaw = project.Platforms.Select(t => t.Platform).ToList();
+                project.PlatformsRaw = project.Platforms.Select(t => t.Platform).OrderBy(t => t.Name).ToList();
             }
-
-            return projects;
         }
     }
 }

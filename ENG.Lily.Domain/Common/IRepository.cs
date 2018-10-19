@@ -30,6 +30,10 @@ namespace ENG.Lily.Domain.Common
 
         List<T> Find(Expression<Func<T, bool>> expression, int page, int pageSize);
 
+        List<T> Find(params Expression<Func<T, object>>[] includePaths);
+
+        List<T> Find(int page, int pageSize, params Expression<Func<T, object>>[] includePaths);
+
         List<T> Find(Expression<Func<T, bool>> expression, params Expression<Func<T, object>>[] includePaths);
 
         List<T> Find(Expression<Func<T, bool>> expression, int page, int pageSize, params Expression<Func<T, object>>[] includePaths);

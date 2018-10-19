@@ -56,24 +56,14 @@ namespace ENG.Lily.Infaestructure.Repository.Repositories
 
         public List<T> Find(Expression<Func<T, bool>> expression, params Expression<Func<T, object>>[] includePaths)
         {
-            var set = this.Set.AsQueryable();
-
-            foreach (var include in includePaths)
-            {
-                set = set.Include(include);
-            }
+            var set = this.IncludeSet(includePaths);
 
             return set.Where(expression).AsNoTracking().ToList();
         }
 
         public List<T> Find(Expression<Func<T, bool>> expression, int page, int pageSize, params Expression<Func<T, object>>[] includePaths)
         {
-            var set = this.Set.AsQueryable();
-
-            foreach (var include in includePaths)
-            {
-                set = set.Include(include);
-            }
+            var set = this.IncludeSet(includePaths);
 
             return set.Where(expression).AsNoTracking().Skip(page * pageSize).Take(pageSize).ToList();
         }
@@ -85,12 +75,7 @@ namespace ENG.Lily.Infaestructure.Repository.Repositories
 
         public T Get(int id, params Expression<Func<T, object>>[] includePaths)
         {
-            var set = this.Set.AsQueryable();
-
-            foreach (var include in includePaths)
-            {
-                set = set.Include(include);
-            }
+            var set = this.IncludeSet(includePaths);
 
             return set.FirstOrDefault(t => t.Id == id);
         }
@@ -102,12 +87,7 @@ namespace ENG.Lily.Infaestructure.Repository.Repositories
 
         public T Get(Expression<Func<T, bool>> expression, params Expression<Func<T, object>>[] includePaths)
         {
-            var set = this.Set.AsQueryable();
-
-            foreach (var include in includePaths)
-            {
-                set = set.Include(include);
-            }
+            var set = this.IncludeSet(includePaths);
 
             return set.FirstOrDefault(expression);
         }
@@ -115,6 +95,32 @@ namespace ENG.Lily.Infaestructure.Repository.Repositories
         public void Update(T entity)
         {
             this.context.Update<T>(entity);
+        }
+
+        public List<T> Find(params Expression<Func<T, object>>[] includePaths)
+        {
+            var set = this.IncludeSet(includePaths);
+
+            return set.ToList();
+        }
+
+        public List<T> Find(int page, int pageSize, params Expression<Func<T, object>>[] includePaths)
+        {
+            var set = this.IncludeSet(includePaths);
+
+            return set.Skip(page * pageSize).Take(pageSize).ToList();
+        }
+
+        protected IQueryable<T> IncludeSet(params Expression<Func<T, object>>[] includePaths)
+        {
+            var set = this.Set.AsQueryable();
+
+            foreach (var include in includePaths)
+            {
+                set = set.Include(include);
+            }
+
+            return set;
         }
     }
 }

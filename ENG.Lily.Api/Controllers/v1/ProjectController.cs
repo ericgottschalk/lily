@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using ENG.Lily.Api.Filters;
 using ENG.Lily.Application.Contracts;
 using ENG.Lily.Application.Mapping.Model;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ENG.Lily.Api.Controllers.v1
 {
-    [Authorize]
     [Produces("application/json")]
     [Route("api/project")]
     public class ProjectController : Controller
@@ -32,7 +27,7 @@ namespace ENG.Lily.Api.Controllers.v1
         }
 
         [HttpPost("save")]
-        [AllowAnonymous]
+        [Authentication]
         public IActionResult Save([FromBody] ProjectModel model)
         {
             this.projectApplication.Save(model);
