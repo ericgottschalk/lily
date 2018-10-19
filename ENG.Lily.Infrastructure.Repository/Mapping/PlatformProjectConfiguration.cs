@@ -9,8 +9,8 @@ namespace ENG.Lily.Infrastructure.Repository.Mapping
     {
         public void Configure(EntityTypeBuilder<PlatformProject> builder)
         {
-            builder.HasOne(t => t.Platform).WithMany(t => t.Projects);
-            builder.HasOne(t => t.Project).WithMany(t => t.Platforms);
+            builder.HasOne(t => t.Platform).WithMany(t => t.Projects).HasForeignKey(t => t.ProjectId);
+            builder.HasOne(t => t.Project).WithMany(t => t.Platforms).HasForeignKey(t => t.PlatformId);
         }
     }
 }

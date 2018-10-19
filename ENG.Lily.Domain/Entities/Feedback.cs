@@ -6,8 +6,10 @@ namespace ENG.Lily.Domain.Entities
 {
     public class Feedback : Entity
     {
+        public int UserId { get; set; }
         public User User { get; set; }
 
+        public int ProjectId { get; set; }
         public Project Project { get; set; }
 
         public feedback Level { get; set; }
@@ -15,5 +17,6 @@ namespace ENG.Lily.Domain.Entities
         public string Text { get; set; }
 
         public DateTime DateCreate { get; set; }
+        
     }
 }

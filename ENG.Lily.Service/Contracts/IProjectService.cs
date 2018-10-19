@@ -14,5 +14,7 @@ namespace ENG.Lily.Service.Contracts
         void Save(Project domainProject);
    
         List<Platform> GetPlatforms();
+
+        List<Project> GetByUser(int idUser);
     }
 }

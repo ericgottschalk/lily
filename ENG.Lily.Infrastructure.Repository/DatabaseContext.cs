@@ -4,6 +4,7 @@ using ENG.Lily.Infraestructure.Runtime;
 using ENG.Lily.Infrastructure.Repository.Extensions;
 using ENG.Lily.Infrastructure.Repository.Mapping;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace ENG.Lily.Infaestructure.Repository
 {
@@ -44,6 +45,11 @@ namespace ENG.Lily.Infaestructure.Repository
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
+            {
+                relationship.DeleteBehavior = DeleteBehavior.ClientSetNull;
+            }
+
             modelBuilder.RemovePluralizingTableNameConvention();
 
             modelBuilder.ApplyConfiguration(new UserConfiguration());

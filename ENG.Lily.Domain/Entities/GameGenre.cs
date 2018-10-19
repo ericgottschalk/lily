@@ -1,4 +1,5 @@
-﻿using ENG.Lily.Domain.Common;
+﻿using System.Collections.Generic;
+using ENG.Lily.Domain.Common;
 
 namespace ENG.Lily.Domain.Entities
 {
@@ -7,5 +8,6 @@ namespace ENG.Lily.Domain.Entities
         public string Name { get; set; }
 
         public string Code { get; set; }
+        public IEnumerable<Project> Projects { get; set; }
     }
 }

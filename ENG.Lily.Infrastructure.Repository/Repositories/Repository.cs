@@ -56,11 +56,11 @@ namespace ENG.Lily.Infaestructure.Repository.Repositories
 
         public List<T> Find(Expression<Func<T, bool>> expression, params Expression<Func<T, object>>[] includePaths)
         {
-            var set = this.Set;
+            var set = this.Set.AsQueryable();
 
             foreach (var include in includePaths)
             {
-                set.Include(include);
+                set = set.Include(include);
             }
 
             return set.Where(expression).AsNoTracking().ToList();
@@ -68,11 +68,11 @@ namespace ENG.Lily.Infaestructure.Repository.Repositories
 
         public List<T> Find(Expression<Func<T, bool>> expression, int page, int pageSize, params Expression<Func<T, object>>[] includePaths)
         {
-            var set = this.Set;
+            var set = this.Set.AsQueryable();
 
             foreach (var include in includePaths)
             {
-                set.Include(include);
+                set = set.Include(include);
             }
 
             return set.Where(expression).AsNoTracking().Skip(page * pageSize).Take(pageSize).ToList();
@@ -85,11 +85,11 @@ namespace ENG.Lily.Infaestructure.Repository.Repositories
 
         public T Get(int id, params Expression<Func<T, object>>[] includePaths)
         {
-            var set = this.Set;
+            var set = this.Set.AsQueryable();
 
             foreach (var include in includePaths)
             {
-                set.Include(include);
+                set = set.Include(include);
             }
 
             return set.FirstOrDefault(t => t.Id == id);
@@ -102,11 +102,11 @@ namespace ENG.Lily.Infaestructure.Repository.Repositories
 
         public T Get(Expression<Func<T, bool>> expression, params Expression<Func<T, object>>[] includePaths)
         {
-            var set = this.Set;
+            var set = this.Set.AsQueryable();
 
             foreach (var include in includePaths)
             {
-                set.Include(include);
+                set = set.Include(include);
             }
 
             return set.FirstOrDefault(expression);

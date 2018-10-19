@@ -6,6 +6,7 @@ namespace ENG.Lily.Domain.Entities
     {
         public string Url { get; set; }
 
+        public int ProjectId { get; set; }
         public Project Project { get; set; }
     }
 }

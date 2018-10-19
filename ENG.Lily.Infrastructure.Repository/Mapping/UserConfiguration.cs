@@ -16,9 +16,9 @@ namespace ENG.Lily.Infrastructure.Repository.Mapping
             builder.Property(t => t.LastName).HasMaxLength(250).IsRequired();
             builder.Property(t => t.DateCreate);
 
-            builder.HasMany(t => t.Feedbacks).WithOne(t => t.User);
-            builder.HasMany(t => t.Projects).WithOne(t => t.User);
-            builder.HasMany(t => t.SendedFunds).WithOne(t => t.User);
+            builder.HasMany(t => t.Feedbacks).WithOne(t => t.User).HasForeignKey(t => t.UserId);
+            builder.HasMany(t => t.Projects).WithOne(t => t.User).HasForeignKey(t => t.UserId);
+            builder.HasMany(t => t.SendedFunds).WithOne(t => t.User).HasForeignKey(t => t.UserId);
 
             builder.HasIndex(t => t.Username).IsUnique();
             builder.HasIndex(t => t.Email).IsUnique();

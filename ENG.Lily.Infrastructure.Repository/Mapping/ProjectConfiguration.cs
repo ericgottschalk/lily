@@ -15,11 +15,10 @@ namespace ENG.Lily.Infrastructure.Repository.Mapping
             builder.Property(t => t.DateCreate);
             builder.Property(t => t.TargetReleaseYear);
 
-            builder.HasOne(t => t.Genre);
-            builder.HasMany(t => t.Platforms);
-            builder.HasMany(t => t.Media).WithOne(t => t.Project);
-            builder.HasMany(t => t.Feedbacks).WithOne(t => t.Project);
-            builder.HasMany(t => t.Funds).WithOne(t => t.Project);
+            builder.HasOne(t => t.Genre).WithMany(t => t.Projects).HasForeignKey(t => t.GenreId);
+            builder.HasMany(t => t.Media).WithOne(t => t.Project).HasForeignKey(t => t.ProjectId);
+            builder.HasMany(t => t.Feedbacks).WithOne(t => t.Project).HasForeignKey(t => t.ProjectId);
+            builder.HasMany(t => t.Funds).WithOne(t => t.Project).HasForeignKey(t => t.ProjectId);
 
             builder.HasIndex(t => t.Name);
             builder.HasIndex(t => t.DateCreate);

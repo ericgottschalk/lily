@@ -2,6 +2,7 @@
 using ENG.Lily.Domain.Entities.ManyToMany;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ENG.Lily.Domain.Entities
 {
@@ -15,8 +16,10 @@ namespace ENG.Lily.Domain.Entities
 
         public string WhyInvest { get; set; }
 
+        public int UserId { get; set; }
         public User User { get; set; }
 
+        public int GenreId { get; set; }
         public GameGenre Genre { get; set; }
 
         public List<Feedback> Feedbacks { get; set; }
@@ -27,6 +30,9 @@ namespace ENG.Lily.Domain.Entities
 
         public DateTime DateCreate { get; set; }
 
-        public int TargetReleaseYear { get; set; }
+        public int TargetReleaseYear { get; set; }      
+
+        [NotMapped]
+        public List<Platform> PlatformsRaw { get; set; }
     }
 }

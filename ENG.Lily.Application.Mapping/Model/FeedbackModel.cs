@@ -4,8 +4,10 @@ namespace ENG.Lily.Application.Mapping.Model
 {
     public class FeedbackModel : Model
     {
+        public int UserId { get; set; }
         public UserModel User { get; set; }
 
+        public int ProjectId { get; set; }
         public ProjectModel Project { get; set; }
 
         public feedbackModel Level { get; set; }

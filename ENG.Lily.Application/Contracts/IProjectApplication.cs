@@ -14,5 +14,7 @@ namespace ENG.Lily.Application.Contracts
         List<GameGenreModel> GetGenres();
 
         List<PlatformModel> GetPlatfoms();
+
+        List<ProjectModel> GetByUser(int idUser);
     }
 }

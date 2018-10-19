@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ENG.Lily.Application.Mapping.Model
 {
-    public class ProjectModel
+    public class ProjectModel : Model
     {
         public string Name { get; set; }
 
@@ -13,8 +13,10 @@ namespace ENG.Lily.Application.Mapping.Model
 
         public string WhyInvest { get; set; }
 
+        public int UserId { get; set; }
         public UserModel User { get; set; }
 
+        public int GenreId { get; set; }
         public GameGenreModel Genre { get; set; }
 
         public List<FeedbackModel> Feedbacks { get; set; }

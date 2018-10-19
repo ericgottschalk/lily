@@ -51,5 +51,12 @@ namespace ENG.Lily.Application
             var domainPlatforms = this.projectService.GetPlatforms();
             return this.mapper.Map<List<PlatformModel>>(domainPlatforms);
         }
+
+        public List<ProjectModel> GetByUser(int idUser)
+        {
+            var domainProjects = this.projectService.GetByUser(idUser);
+
+            return mapper.Map<List<ProjectModel>>(domainProjects);
+        }
     }
 }

@@ -1,8 +1,10 @@
 ﻿using ENG.Lily.Domain.Entities;
+using ENG.Lily.Domain.Entities.ManyToMany;
 using ENG.Lily.Domain.Repositories;
 using ENG.Lily.Service.Contracts;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ENG.Lily.Service
 {
@@ -11,12 +13,14 @@ namespace ENG.Lily.Service
         private IProjectRepository projectRepository;
         private IPlatformRepository platformRepository;
         private IGameGenreRepository gameGenreRepository;
+        private IPlatformProjectRepository platformProjectRepository;
 
-        public ProjectService(IProjectRepository projectRepository, IPlatformRepository platformRepository, IGameGenreRepository gameGenreRepository)
+        public ProjectService(IProjectRepository projectRepository, IPlatformRepository platformRepository, IGameGenreRepository gameGenreRepository, IPlatformProjectRepository platformProjectRepository)
         {
             this.projectRepository = projectRepository;
             this.platformRepository = platformRepository;
             this.gameGenreRepository = gameGenreRepository;
+            this.platformProjectRepository = platformProjectRepository;
         }
 
         public Project Get(int id)
@@ -31,7 +35,7 @@ namespace ENG.Lily.Service
 
         public List<Project> GetNewestProjects()
         {
-            return projectRepository.FindTopOrderedByDate(10);
+            return this.projectRepository.FindTopOrderedByDate(10);
         }
 
         public List<GameGenre> GetGenres()
@@ -45,12 +49,45 @@ namespace ENG.Lily.Service
             {
                 project.DateCreate = DateTime.Now;
                 this.projectRepository.Add(project);
+
+                foreach (var platform in project.PlatformsRaw)
+                {
+                    var platformProject = new PlatformProject
+                    {
+                        PlatformId = platform.Id,
+                        ProjectId = project.Id
+                    };
+
+                    this.platformProjectRepository.Add(platformProject);
+                }
             }
         }
 
         public List<Platform> GetPlatforms()
         {
             return this.platformRepository.Find();
+        }
+
+        public List<Project> GetByUser(int idUser)
+        {
+            var projects = this.projectRepository.FindWithPlatforms(t => t.UserId == idUser, t => t.Genre, t => t.Media).OrderByDescending(t => t.DateCreate).ToList();
+
+            foreach (var project in projects)
+            {
+                if (project.Platforms == null)
+                {
+                    continue;
+                }
+                foreach (var platform in project.Platforms)
+                {
+                    platform.Project = null;
+                    platform.Platform.Projects = null;
+                }
+
+                project.PlatformsRaw = project.Platforms.Select(t => t.Platform).ToList();
+            }
+
+            return projects;
         }
     }
 }
