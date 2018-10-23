@@ -26,6 +26,51 @@ namespace ENG.Lily.Api.Controllers.v1
             return Ok(projects);
         }
 
+        [HttpGet("newest/{page:int}/{pagesize:int}")]
+        [AllowAnonymous]
+        public IActionResult GetNewest(int page, int pageSize)
+        {
+            var projects = this.projectApplication.GetNewestProjects();
+
+            return Ok(projects);
+        }
+
+        [HttpGet("top-rated")]
+        [AllowAnonymous]
+        public IActionResult GetTopTated()
+        {
+            var projects = this.projectApplication.GetNewestProjects();
+
+            return Ok(projects);
+        }
+
+        [HttpGet("top-rated/{page:int}/{pagesize:int}")]
+        [AllowAnonymous]
+        public IActionResult GetTopTated(int page, int pageSize)
+        {
+            var projects = this.projectApplication.GetNewestProjects();
+
+            return Ok(projects);
+        }
+
+        [HttpGet("most-popular")]
+        [AllowAnonymous]
+        public IActionResult GetMostPopulart()
+        {
+            var projects = this.projectApplication.GetNewestProjects();
+
+            return Ok(projects);
+        }
+
+        [HttpGet("most-popular/{page:int}/{pagesize:int}")]
+        [AllowAnonymous]
+        public IActionResult GetMostPopulart(int page, int pageSize)
+        {
+            var projects = this.projectApplication.GetNewestProjects();
+
+            return Ok(projects);
+        }
+
         [HttpPost("save")]
         [Authentication]
         public IActionResult Save([FromBody] ProjectModel model)

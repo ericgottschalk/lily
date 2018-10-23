@@ -16,6 +16,12 @@ namespace ENG.Lily.Domain.Entities
 
         public string LastName { get; set; }
 
+        public string City { get; set; }
+
+        public string Country { get; set; }
+
+        public string WebSite { get; set; }
+
         public DateTime DateCreate { get; set; }
 
 

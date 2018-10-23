@@ -15,6 +15,12 @@ namespace ENG.Lily.Application.Mapping.Model
 
         public string LastName { get; set; }
 
+        public string City { get; set; }
+
+        public string Country { get; set; }
+
+        public string WebSite { get; set; }
+
         public DateTime DateCreate { get; set; }
 
         public List<ProjectModel> Projects { get; set; }
