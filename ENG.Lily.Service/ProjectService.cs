@@ -35,7 +35,25 @@ namespace ENG.Lily.Service
 
         public List<Project> GetNewestProjects()
         {
-            var projects = this.projectRepository.FindWithPlatforms(t => t.Genre, t => t.Media).OrderByDescending(t => t.DateCreate).ToList();
+            var projects = this.projectRepository.FindWithPlatforms(t => t.Genre, t => t.Media, t => t.User).OrderByDescending(t => t.DateCreate)
+                .Select(t => new Project
+                {
+                    DateCreate = t.DateCreate,
+                    Description = t.Description,
+                    Genre = t.Genre,
+                    Id = t.Id,
+                    User = new User
+                    {
+                        Username = t.User.Username
+                    },
+                    Media = t.Media,
+                    Name = t.Name,
+                    Platforms = t.Platforms,
+                    TargetReleaseYear = t.TargetReleaseYear,
+                    WhyInvest = t.WhyInvest,
+                    GenreId = t.GenreId,
+                    UserId = t.UserId
+                }).ToList();
 
             this.SetPlatformsRaw(projects);
 
@@ -74,7 +92,7 @@ namespace ENG.Lily.Service
 
         public List<Project> GetByUser(int idUser)
         {
-            var projects = this.projectRepository.FindWithPlatforms(t => t.UserId == idUser, t => t.Genre, t => t.Media).OrderByDescending(t => t.DateCreate).ToList();
+            var projects = this.projectRepository.FindWithPlatforms(t => t.UserId == idUser, t => t.Genre, t => t.Media, t => t.User).OrderByDescending(t => t.DateCreate).ToList();
 
             this.SetPlatformsRaw(projects);
 
