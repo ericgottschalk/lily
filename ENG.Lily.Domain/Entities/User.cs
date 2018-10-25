@@ -22,13 +22,16 @@ namespace ENG.Lily.Domain.Entities
 
         public string WebSite { get; set; }
 
-        public DateTime DateCreate { get; set; }
+        public string ProfilePictureUrl { get; set; }
 
+        public string Phrase { get; set; }
+
+        public DateTime DateCreate { get; set; }
 
         public List<Project> Projects { get; set; }
 
         public List<Feedback> Feedbacks { get; set; }
 
-        public List<Fund> SendedFunds { get; set; }
+        public List<Fund> SendedFunds { get; set; }        
     }
 }

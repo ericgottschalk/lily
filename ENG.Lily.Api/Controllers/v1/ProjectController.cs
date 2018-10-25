@@ -98,6 +98,15 @@ namespace ENG.Lily.Api.Controllers.v1
             return Ok(projects);
         }
 
+        [HttpGet("user/{username}")]
+        [AllowAnonymous]
+        public IActionResult GetByUser(string username)
+        {
+            var projects = this.projectApplication.GetByUser(username);
+
+            return Ok(projects);
+        }
+
         [HttpGet("genres")]
         [AllowAnonymous]
         public IActionResult GetGenres()

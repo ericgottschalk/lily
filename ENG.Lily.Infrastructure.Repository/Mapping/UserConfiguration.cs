@@ -17,6 +17,8 @@ namespace ENG.Lily.Infrastructure.Repository.Mapping
             builder.Property(t => t.City).HasMaxLength(250);
             builder.Property(t => t.Country).HasMaxLength(250);
             builder.Property(t => t.WebSite).HasMaxLength(250);
+            builder.Property(t => t.ProfilePictureUrl);
+            builder.Property(t => t.Phrase).HasMaxLength(100);
             builder.Property(t => t.DateCreate);
 
             builder.HasMany(t => t.Feedbacks).WithOne(t => t.User).HasForeignKey(t => t.UserId);

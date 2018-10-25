@@ -117,5 +117,14 @@ namespace ENG.Lily.Service
                 project.PlatformsRaw = project.Platforms.Select(t => t.Platform).OrderBy(t => t.Name).ToList();
             }
         }
+
+        public List<Project> GetByUser(string username)
+        {
+            var projects = this.projectRepository.FindWithPlatforms(t => t.User.Username == username, t => t.Genre, t => t.Media, t => t.User).OrderByDescending(t => t.DateCreate).ToList();
+
+            this.SetPlatformsRaw(projects);
+
+            return projects;
+        }
     }
 }

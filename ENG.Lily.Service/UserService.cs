@@ -25,7 +25,17 @@ namespace ENG.Lily.Service
                 return;
             }
 
-            this.userRepository.Update(user);
+            var dbUser = this.Get(user.Id);
+
+            dbUser.FirstName = user.FirstName;
+            dbUser.LastName = user.LastName;
+            dbUser.Phrase = user.Phrase;
+            dbUser.ProfilePictureUrl = user.ProfilePictureUrl;
+            dbUser.WebSite = user.WebSite;
+            dbUser.City = user.City;
+            dbUser.Country = user.Country;
+
+            this.userRepository.Update(dbUser);
         }
 
         public User Login(string username, string password)
@@ -50,6 +60,26 @@ namespace ENG.Lily.Service
             user.Email = string.Empty;
 
             return user;
+        }
+
+        public User Get(string username)
+        {
+            var user = this.userRepository.Get(t => t.Username == username, t => t.Projects);
+
+            user.Password = string.Empty;
+            user.Email = string.Empty;
+
+            return user;
+        }
+
+        public void SaveProfilePictureUrl(int idUser, string profilePictureUrl)
+        {
+            var dbUser = this.Get(idUser);
+
+            dbUser.ProfilePictureUrl = profilePictureUrl;
+
+
+            this.userRepository.Update(dbUser);
         }
     }
 }

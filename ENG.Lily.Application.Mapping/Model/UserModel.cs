@@ -21,6 +21,10 @@ namespace ENG.Lily.Application.Mapping.Model
 
         public string WebSite { get; set; }
 
+        public string ProfilePictureUrl { get; set; }
+
+        public string Phrase { get; set; }
+
         public DateTime DateCreate { get; set; }
 
         public List<ProjectModel> Projects { get; set; }

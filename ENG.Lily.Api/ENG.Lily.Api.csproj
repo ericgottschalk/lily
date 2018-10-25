@@ -6,10 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="7.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.4" />
@@ -25,11 +21,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\content\profiles\14\7d838e40-9c67-4a98-b373-3b6efadf136d.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ENG.Lily.Application.Mapping\ENG.Lily.Application.Mapping.csproj" />
     <ProjectReference Include="..\ENG.Lily.Application\ENG.Lily.Application.csproj" />
     <ProjectReference Include="..\ENG.Lily.Infrastructure.DependencyInjection\ENG.Lily.Infrastructure.DependencyInjection.csproj" />
     <ProjectReference Include="..\ENG.Lily.Infrastructure.Repository\ENG.Lily.Infrastructure.Repository.csproj" />
     <ProjectReference Include="..\ENG.Lily.Infrastructure\ENG.Lily.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\content\projects\" />
   </ItemGroup>
 
 </Project>

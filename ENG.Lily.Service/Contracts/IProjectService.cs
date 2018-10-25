@@ -16,5 +16,7 @@ namespace ENG.Lily.Service.Contracts
         List<Platform> GetPlatforms();
 
         List<Project> GetByUser(int idUser);
+
+        List<Project> GetByUser(string username);
     }
 }
