@@ -35,13 +35,8 @@ namespace ENG.Lily.Api.Controllers.v1
 
         [HttpPut("update")]
         [Authentication]
-        public IActionResult Update([FromBody] UserModel model, [FromBody] IFormFile picture)
+        public IActionResult Update([FromBody] UserModel model)
         {
-            if (picture != null)
-            {
-                model.ProfilePictureUrl = this.SaveProfilePicture(model.Id, picture);
-            }
-
             this.userApplication.Save(model);
 
             return Ok();

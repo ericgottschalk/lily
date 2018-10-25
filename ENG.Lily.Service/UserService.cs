@@ -25,12 +25,11 @@ namespace ENG.Lily.Service
                 return;
             }
 
-            var dbUser = this.Get(user.Id);
+            var dbUser = this.userRepository.Get(user.Id);
 
             dbUser.FirstName = user.FirstName;
             dbUser.LastName = user.LastName;
             dbUser.Phrase = user.Phrase;
-            dbUser.ProfilePictureUrl = user.ProfilePictureUrl;
             dbUser.WebSite = user.WebSite;
             dbUser.City = user.City;
             dbUser.Country = user.Country;
@@ -74,10 +73,9 @@ namespace ENG.Lily.Service
 
         public void SaveProfilePictureUrl(int idUser, string profilePictureUrl)
         {
-            var dbUser = this.Get(idUser);
+            var dbUser = this.userRepository.Get(idUser);
 
             dbUser.ProfilePictureUrl = profilePictureUrl;
-
 
             this.userRepository.Update(dbUser);
         }
