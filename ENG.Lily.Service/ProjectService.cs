@@ -44,7 +44,8 @@ namespace ENG.Lily.Service
                     Id = t.Id,
                     User = new User
                     {
-                        Username = t.User.Username
+                        Username = t.User.Username,
+                        Verified = t.User.Verified
                     },
                     Media = t.Media,
                     Name = t.Name,

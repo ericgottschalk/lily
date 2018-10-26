@@ -93,6 +93,15 @@ namespace ENG.Lily.Api.Controllers.v1
                 {
                     Directory.CreateDirectory(path);
                 }
+                else
+                {
+                   var directoryInfo = new DirectoryInfo(path);
+
+                    foreach (var file in directoryInfo.GetFiles())
+                    {
+                        file.Delete();
+                    }
+                }
 
                 using (var fileStream = System.IO.File.Create($@"{path}\{fileName}"))
                 {
