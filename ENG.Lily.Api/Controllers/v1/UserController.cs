@@ -72,7 +72,7 @@ namespace ENG.Lily.Api.Controllers.v1
             return Ok(user);
         }
 
-        [HttpGet("get/{username}")]
+        [HttpGet("get/username/{username}")]
         [AllowAnonymous]
         public IActionResult Get(string username)
         {
