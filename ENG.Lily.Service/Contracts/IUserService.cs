@@ -9,5 +9,8 @@ namespace ENG.Lily.Service.Contracts
         User Login(string username, string Password);
 
         User Get(int id);
+
+        User Get(string username);
+        void SaveProfilePictureUrl(int idUser, string profilePictureUrl);
     }
 }

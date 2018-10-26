@@ -14,6 +14,10 @@ namespace ENG.Lily.Application
         private readonly IMapper mapper;
         private readonly IUserService userService;
 
+        public UserApplication()
+        {
+        }
+
         public UserApplication(IMapper mapper, IUserService userService)
         {
             this.mapper = mapper;
@@ -23,6 +27,13 @@ namespace ENG.Lily.Application
         public UserModel Get(int id)
         {
             var domainUser = this.userService.Get(id);
+
+            return this.mapper.Map<UserModel>(domainUser);
+        }
+
+        public UserModel Get(string username)
+        {
+            var domainUser = this.userService.Get(username);
 
             return this.mapper.Map<UserModel>(domainUser);
         }
@@ -38,6 +49,11 @@ namespace ENG.Lily.Application
         {
             var domainDeveloper = mapper.Map<User>(model);
             this.userService.Save(domainDeveloper);
+        }
+
+        public void SaveProfilePictureUrl(int idUser, string profilePictureUrl)
+        {
+            this.userService.SaveProfilePictureUrl(idUser, profilePictureUrl);
         }
     }
 }

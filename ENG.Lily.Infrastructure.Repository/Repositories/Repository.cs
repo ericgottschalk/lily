@@ -95,6 +95,7 @@ namespace ENG.Lily.Infaestructure.Repository.Repositories
         public void Update(T entity)
         {
             this.context.Update<T>(entity);
+            this.context.SaveChanges();
         }
 
         public List<T> Find(params Expression<Func<T, object>>[] includePaths)

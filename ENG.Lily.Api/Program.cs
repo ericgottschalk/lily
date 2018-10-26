@@ -12,6 +12,7 @@ namespace ENG.Lily.Api
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .UseWebRoot("wwwroot")
                 .UseStartup<Startup>()
                 .Build();
     }

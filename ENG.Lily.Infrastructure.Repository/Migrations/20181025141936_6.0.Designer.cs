@@ -4,14 +4,16 @@ using ENG.Lily.Infaestructure.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ENG.Lily.Infrastructure.Repository.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20181025141936_6.0")]
+    partial class _60
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -228,9 +230,6 @@ namespace ENG.Lily.Infrastructure.Repository.Migrations
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasMaxLength(64);
-
-                    b.Property<string>("Phrase")
-                        .HasMaxLength(100);
 
                     b.Property<string>("ProfilePictureUrl");
 

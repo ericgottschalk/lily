@@ -328,3 +328,5 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+/ENG.Lily.Api/wwwroot/content/profiles/14
+/ENG.Lily.Api/wwwroot/content/profiles

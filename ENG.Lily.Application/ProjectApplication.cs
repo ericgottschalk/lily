@@ -58,5 +58,12 @@ namespace ENG.Lily.Application
 
             return mapper.Map<List<ProjectModel>>(domainProjects);
         }
+
+        public List<ProjectModel> GetByUser(string username)
+        {
+            var domainProjects = this.projectService.GetByUser(username);
+
+            return mapper.Map<List<ProjectModel>>(domainProjects);
+        }
     }
 }
