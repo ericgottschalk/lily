@@ -28,5 +28,7 @@ namespace ENG.Lily.Application.Mapping.Model
         public List<FeedbackModel> Feedbacks { get; set; }
 
         public string Token { get; set; }
+
+        public bool Verified { get; set; }
     }
 }

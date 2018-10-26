@@ -30,5 +30,7 @@ namespace ENG.Lily.Domain.Entities
         public List<Feedback> Feedbacks { get; set; }
 
         public List<Fund> SendedFunds { get; set; }
+
+        public bool Verified { get; set; }
     }
 }

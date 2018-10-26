@@ -18,6 +18,7 @@ namespace ENG.Lily.Infrastructure.Repository.Mapping
             builder.Property(t => t.Country).HasMaxLength(250);
             builder.Property(t => t.WebSite).HasMaxLength(250);
             builder.Property(t => t.DateCreate);
+            builder.Property(t => t.Verified);
 
             builder.HasMany(t => t.Feedbacks).WithOne(t => t.User).HasForeignKey(t => t.UserId);
             builder.HasMany(t => t.Projects).WithOne(t => t.User).HasForeignKey(t => t.UserId);
