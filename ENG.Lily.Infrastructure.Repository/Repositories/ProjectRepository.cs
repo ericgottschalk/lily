@@ -55,6 +55,18 @@ namespace ENG.Lily.Infrastructure.Repository.Repositories
             return set.AsNoTracking().Skip(page * pageSize).Take(pageSize).ToList();
         }
 
+        public Project GetWithPlatforms(Expression<Func<Project, bool>> expression)
+        {
+            return this.Set.Include(t => t.Platforms).ThenInclude(t => t.Platform).FirstOrDefault(expression);
+        }
+
+        public Project GetWithPlatforms(Expression<Func<Project, bool>> expression, params Expression<Func<Project, object>>[] includePaths)
+        {
+            var set = this.IncludeSetWithPlatform(includePaths);
+
+            return set.FirstOrDefault(expression);
+        }
+
         private IQueryable<Project> IncludeSetWithPlatform(params Expression<Func<Project, object>>[] includePaths)
         {
             var set = this.Set.Include(t => t.Platforms).ThenInclude(t => t.Platform).AsQueryable();

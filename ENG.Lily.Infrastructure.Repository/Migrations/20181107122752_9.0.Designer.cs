@@ -4,14 +4,16 @@ using ENG.Lily.Infaestructure.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ENG.Lily.Infrastructure.Repository.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20181107122752_9.0")]
+    partial class _90
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -176,10 +178,6 @@ namespace ENG.Lily.Infrastructure.Repository.Migrations
 
                     b.Property<int>("GenreId");
 
-                    b.Property<string>("Hash")
-                        .IsRequired()
-                        .HasMaxLength(64);
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(250);
@@ -188,7 +186,8 @@ namespace ENG.Lily.Infrastructure.Repository.Migrations
 
                     b.Property<int>("UserId");
 
-                    b.Property<string>("WebSite")
+                    b.Property<string>("WhyInvest")
+                        .IsRequired()
                         .HasMaxLength(750);
 
                     b.HasKey("Id");
@@ -196,9 +195,6 @@ namespace ENG.Lily.Infrastructure.Repository.Migrations
                     b.HasIndex("DateCreate");
 
                     b.HasIndex("GenreId");
-
-                    b.HasIndex("Hash")
-                        .IsUnique();
 
                     b.HasIndex("Name");
 

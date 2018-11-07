@@ -4,14 +4,16 @@ using ENG.Lily.Infaestructure.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ENG.Lily.Infrastructure.Repository.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20181107194536_10.0")]
+    partial class _100
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -188,7 +190,8 @@ namespace ENG.Lily.Infrastructure.Repository.Migrations
 
                     b.Property<int>("UserId");
 
-                    b.Property<string>("WebSite")
+                    b.Property<string>("WhyInvest")
+                        .IsRequired()
                         .HasMaxLength(750);
 
                     b.HasKey("Id");

@@ -19,5 +19,9 @@ namespace ENG.Lily.Domain.Repositories
         List<Project> FindWithPlatforms(Expression<Func<Project, bool>> expression, params Expression<Func<Project, object>>[] includePaths);
 
         List<Project> FindWithPlatforms(Expression<Func<Project, bool>> expression, int page, int pageSize, params Expression<Func<Project, object>>[] includePaths);
+
+        Project GetWithPlatforms(Expression<Func<Project, bool>> expression);
+
+        Project GetWithPlatforms(Expression<Func<Project, bool>> expression, params Expression<Func<Project, object>>[] includePaths);
     }
 }

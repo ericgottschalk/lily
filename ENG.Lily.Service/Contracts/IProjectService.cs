@@ -18,5 +18,15 @@ namespace ENG.Lily.Service.Contracts
         List<Project> GetByUser(int idUser);
 
         List<Project> GetByUser(string username);
+
+        List<Project> GetTopRatedProjects();
+
+        List<Project> GetTopRatedProjects(int page, int pageSize);
+
+        Project GetByHash(string hash);
+
+        Project GetByHash(int idUser, string hash);
+
+        void SaveCoverImage(int id, string coverUrl);
     }
 }

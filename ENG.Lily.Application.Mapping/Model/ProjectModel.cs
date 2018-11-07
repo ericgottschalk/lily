@@ -5,13 +5,17 @@ namespace ENG.Lily.Application.Mapping.Model
 {
     public class ProjectModel : Model
     {
+        public string Hash { get; set; }
+
         public string Name { get; set; }
 
         public string Description { get; set; }
 
+        public string CoverUrl { get; set; }
+
         public List<MediaModel> Media { get; set; }
 
-        public string WhyInvest { get; set; }
+        public string WebSite { get; set; }
 
         public int UserId { get; set; }
         public UserModel User { get; set; }

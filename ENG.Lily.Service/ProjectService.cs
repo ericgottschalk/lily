@@ -51,7 +51,7 @@ namespace ENG.Lily.Service
                     Name = t.Name,
                     Platforms = t.Platforms,
                     TargetReleaseYear = t.TargetReleaseYear,
-                    WhyInvest = t.WhyInvest,
+                    WebSite = t.WebSite,
                     GenreId = t.GenreId,
                     UserId = t.UserId
                 }).ToList();
@@ -71,6 +71,7 @@ namespace ENG.Lily.Service
             if (project.IsNew())
             {
                 project.DateCreate = DateTime.Now;
+                project.Hash = Guid.NewGuid().ToString().Replace("-", string.Empty);
                 this.projectRepository.Add(project);
 
                 foreach (var platform in project.PlatformsRaw)
@@ -100,22 +101,27 @@ namespace ENG.Lily.Service
             return projects;
         }
 
+        private void SetPlatformsRaw(Project project)
+        {
+            if (project.Platforms == null)
+            {
+                return;
+            }
+
+            foreach (var platform in project.Platforms)
+            {
+                platform.Project = null;
+                platform.Platform.Projects = null;
+            }
+
+            project.PlatformsRaw = project.Platforms.Select(t => t.Platform).OrderBy(t => t.Name).ToList();
+        }
+
         private void SetPlatformsRaw(List<Project> projects)
         {
             foreach (var project in projects)
             {
-                if (project.Platforms == null)
-                {
-                    continue;
-                }
-
-                foreach (var platform in project.Platforms)
-                {
-                    platform.Project = null;
-                    platform.Platform.Projects = null;
-                }
-
-                project.PlatformsRaw = project.Platforms.Select(t => t.Platform).OrderBy(t => t.Name).ToList();
+                SetPlatformsRaw(project);
             }
         }
 
@@ -126,6 +132,43 @@ namespace ENG.Lily.Service
             this.SetPlatformsRaw(projects);
 
             return projects;
+        }
+
+        public List<Project> GetTopRatedProjects()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Project> GetTopRatedProjects(int page, int pageSize)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Project GetByHash(string hash)
+        {
+            var project = this.projectRepository.GetWithPlatforms(t => t.Hash == hash, t => t.Genre, t => t.Media, t => t.User);
+
+            this.SetPlatformsRaw(project);
+
+            return project;
+        }
+
+        public Project GetByHash(int idUser, string hash)
+        {
+            var project = this.projectRepository.GetWithPlatforms(t => t.UserId == idUser && t.Hash == hash, t => t.Genre, t => t.Media, t => t.User);
+
+            this.SetPlatformsRaw(project);
+
+            return project;
+        }
+
+        public void SaveCoverImage(int id, string coverUrl)
+        {
+            var dbProject = this.projectRepository.Get(id);
+
+            dbProject.CoverUrl = coverUrl;
+
+            this.projectRepository.Update(dbProject);
         }
     }
 }

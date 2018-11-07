@@ -33,6 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\content\projects-covers\" />
     <Folder Include="wwwroot\content\projects\" />
   </ItemGroup>
 

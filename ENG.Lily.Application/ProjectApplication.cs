@@ -65,5 +65,38 @@ namespace ENG.Lily.Application
 
             return mapper.Map<List<ProjectModel>>(domainProjects);
         }
+
+        public List<ProjectModel> GetTopRatedProjects()
+        {
+            var domainProjects = this.projectService.GetTopRatedProjects();
+
+            return mapper.Map<List<ProjectModel>>(domainProjects);
+        }
+
+        public List<ProjectModel> GetTopRatedProjects(int page, int pageSize)
+        {
+            var domainProjects = this.projectService.GetTopRatedProjects(page, pageSize);
+
+            return mapper.Map<List<ProjectModel>>(domainProjects);
+        }
+
+        public void SaveCoverImage(int id, string coverUrl)
+        {
+            this.projectService.SaveCoverImage(id, coverUrl);
+        }
+
+        ProjectModel IProjectApplication.GetByHash(string hash)
+        {
+            var domainProject = this.projectService.GetByHash(hash);
+
+            return mapper.Map<ProjectModel>(domainProject);
+        }
+
+        public ProjectModel GetByHash(int idUser, string hash)
+        {
+            var domainProject = this.projectService.GetByHash(idUser, hash);
+
+            return mapper.Map<ProjectModel>(domainProject);
+        }
     }
 }

@@ -8,13 +8,17 @@ namespace ENG.Lily.Domain.Entities
 {
     public class Project : Entity
     {
+        public string Hash { get; set; }
+
         public string Name { get; set; }
 
         public string Description { get; set; }
 
+        public string CoverUrl { get; set; }
+
         public List<Media> Media { get; set; }
 
-        public string WhyInvest { get; set; }
+        public string WebSite { get; set; }
 
         public int UserId { get; set; }
         public User User { get; set; }
