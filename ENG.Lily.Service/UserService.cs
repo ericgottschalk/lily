@@ -3,6 +3,7 @@ using ENG.Lily.Domain.Repositories;
 using ENG.Lily.Infrastructure.Security;
 using ENG.Lily.Service.Contracts;
 using System;
+using System.Collections.Generic;
 
 namespace ENG.Lily.Service
 {
@@ -78,6 +79,11 @@ namespace ENG.Lily.Service
             dbUser.ProfilePictureUrl = profilePictureUrl;
 
             this.userRepository.Update(dbUser);
+        }
+
+        public List<User> GetTopUsers()
+        {
+            return null;
         }
     }
 }

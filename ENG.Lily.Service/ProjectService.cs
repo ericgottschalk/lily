@@ -53,7 +53,8 @@ namespace ENG.Lily.Service
                     TargetReleaseYear = t.TargetReleaseYear,
                     WebSite = t.WebSite,
                     GenreId = t.GenreId,
-                    UserId = t.UserId
+                    UserId = t.UserId,
+                    Hash = t.Hash
                 }).ToList();
 
             this.SetPlatformsRaw(projects);

@@ -38,6 +38,13 @@ namespace ENG.Lily.Application
             return this.mapper.Map<UserModel>(domainUser);
         }
 
+        public List<UserModel> GetTopUsers()
+        {
+            var domainsUser = this.userService.GetTopUsers();
+
+            return this.mapper.Map<List<UserModel>>(domainsUser);
+        }
+
         public UserModel Login(LoginModel model)
         {
             var domainUser = this.userService.Login(model.Username, model.Password);

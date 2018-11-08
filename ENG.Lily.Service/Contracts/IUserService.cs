@@ -1,4 +1,5 @@
 ﻿using ENG.Lily.Domain.Entities;
+using System.Collections.Generic;
 
 namespace ENG.Lily.Service.Contracts
 {
@@ -11,6 +12,9 @@ namespace ENG.Lily.Service.Contracts
         User Get(int id);
 
         User Get(string username);
+
         void SaveProfilePictureUrl(int idUser, string profilePictureUrl);
+
+        List<User> GetTopUsers();
     }
 }

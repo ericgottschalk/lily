@@ -81,6 +81,15 @@ namespace ENG.Lily.Api.Controllers.v1
             return Ok(user);
         }
 
+        [HttpGet("get/top-users")]
+        [AllowAnonymous]
+        public IActionResult GetTopUsers()
+        {
+            var user = this.userApplication.GetTopUsers();
+
+            return Ok(user);
+        }
+
         private string SaveProfilePicture(int id, IFormFile picture)
         {
             if (picture.Length > 0)

@@ -1,4 +1,5 @@
 ﻿using ENG.Lily.Application.Mapping.Model;
+using System.Collections.Generic;
 
 namespace ENG.Lily.Application.Contracts
 {
@@ -13,5 +14,7 @@ namespace ENG.Lily.Application.Contracts
         UserModel Get(string username);
 
         void SaveProfilePictureUrl(int idUser, string profilePictureUrl);
+
+        List<UserModel> GetTopUsers();
     }
 }
