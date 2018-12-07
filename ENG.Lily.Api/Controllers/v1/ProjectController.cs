@@ -130,6 +130,36 @@ namespace ENG.Lily.Api.Controllers.v1
             return Ok(total);
         }
 
+        [HttpPost("feedback")]
+        public IActionResult Feedback(int idUser, int idProject, int rank, string text)
+        {
+            try
+            {
+                this.projectApplication.Feedback(idUser, idProject, rank, text);
+
+                return Ok(new { message = "Successful operation.", success = true });
+            }
+            catch (Exception ex)
+            {
+                return Ok(new { message = ex.Message, success = false });
+            }
+        }
+
+        [HttpGet("get-user-feedback")]
+        public IActionResult GetUserFeedback(int idUser, int idProject)
+        {
+            try
+            {
+                var feedback = this.projectApplication.GetUserFeedback(idUser, idProject);
+
+                return Ok(feedback);
+            }
+            catch (Exception ex)
+            {
+                return Ok(new { message = ex.Message, success = false });
+            }
+        }
+
         private string SaveCoverImage(int idProject, IFormFile coverImage)
         {
             if (coverImage.Length > 0)

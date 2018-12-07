@@ -109,5 +109,17 @@ namespace ENG.Lily.Application
         {
             return this.projectService.GetUserTotalContribuition(idUser, idProject);
         }
+
+        public void Feedback(int idUser, int idProject, int rank, string text)
+        {
+            this.projectService.Feedback(idUser, idProject, rank, text);
+        }
+
+        public FeedbackModel GetUserFeedback(int idUser, int idProject)
+        {
+            var domainFeedback = this.projectService.GetUserFeedbackFeedback(idUser, idProject);
+
+            return mapper.Map<FeedbackModel>(domainFeedback);
+        }
     }
 }

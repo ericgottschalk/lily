@@ -16,14 +16,16 @@ namespace ENG.Lily.Service
         private IGameGenreRepository gameGenreRepository;
         private IPlatformProjectRepository platformProjectRepository;
         private IFundRepository fundRepository;
+        private IFeedbackRepository feedbackRepository;
 
-        public ProjectService(IProjectRepository projectRepository, IPlatformRepository platformRepository, IGameGenreRepository gameGenreRepository, IPlatformProjectRepository platformProjectRepository, IFundRepository fundRepository)
+        public ProjectService(IProjectRepository projectRepository, IPlatformRepository platformRepository, IGameGenreRepository gameGenreRepository, IPlatformProjectRepository platformProjectRepository, IFundRepository fundRepository, IFeedbackRepository feedbackRepository)
         {
             this.projectRepository = projectRepository;
             this.platformRepository = platformRepository;
             this.gameGenreRepository = gameGenreRepository;
             this.platformProjectRepository = platformProjectRepository;
             this.fundRepository = fundRepository;
+            this.feedbackRepository = feedbackRepository;
         }
 
         public Project Get(int id)
@@ -61,7 +63,7 @@ namespace ENG.Lily.Service
                     Hash = t.Hash,
                     Budget = t.Budget,
                     CoverUrl = t.CoverUrl
-                    
+
                 }).ToList();
 
             this.SetPlatformsRaw(projects);
@@ -196,7 +198,7 @@ namespace ENG.Lily.Service
                 ProjectId = entity.IdProject,
                 TaxId = entity.TaxId,
                 TransactionId = Guid.NewGuid().ToString().Replace("-", string.Empty),
-                UserId = entity.IdUser,             
+                UserId = entity.IdUser,
                 DateCreate = DateTime.Now
             };
 
@@ -213,6 +215,30 @@ namespace ENG.Lily.Service
         public decimal GetUserTotalContribuition(int idUser, int idProject)
         {
             return this.fundRepository.GetTotalByIdProjectIdUser(idProject, idUser);
+        }
+
+        public void Feedback(int idUser, int idProject, int rank, string text)
+        {
+            if (this.feedbackRepository.Any(t => t.ProjectId == idProject && t.UserId == idUser))
+            {
+                throw new Exception("This user already feedback this project.");
+            }
+
+            var feedback = new Feedback
+            {
+                UserId = idUser,
+                Text = text,
+                ProjectId = idProject,
+                Level = (Sunflower.Domain.Enum.feedback)rank,
+                DateCreate = DateTime.Now
+            };
+
+            this.feedbackRepository.Add(feedback);
+        }
+
+        public Feedback GetUserFeedbackFeedback(int idUser, int idProject)
+        {
+            return this.feedbackRepository.Get(t => t.UserId == idUser && t.ProjectId == idProject);
         }
     }
 }

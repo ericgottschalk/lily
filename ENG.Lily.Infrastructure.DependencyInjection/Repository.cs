@@ -17,6 +17,7 @@ namespace ENG.Lily.Infrastructure.DependencyInjection
             services.AddTransient<IGameGenreRepository, GameGenreRepository>();
             services.AddTransient<IPlatformProjectRepository, PlatformProjectRepository>();
             services.AddTransient<IFundRepository, FundRepository>();
+            services.AddTransient<IFeedbackRepository, FeedbackRepository>();
         }
     }
 }

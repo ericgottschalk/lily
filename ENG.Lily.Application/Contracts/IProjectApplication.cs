@@ -32,5 +32,9 @@ namespace ENG.Lily.Application.Contracts
         bool Contribue(ContribuitionModel model);
 
         decimal GetUserTotalContribuition(int idUser, int idProject);
+
+        void Feedback(int idUser, int idProject, int rank, string text);
+
+        FeedbackModel GetUserFeedback(int idUser, int idProject);
     }
 }
