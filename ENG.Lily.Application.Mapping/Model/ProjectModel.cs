@@ -11,6 +11,8 @@ namespace ENG.Lily.Application.Mapping.Model
 
         public string Description { get; set; }
 
+        public string PrizesAndRewards { get; set; }
+
         public string CoverUrl { get; set; }
 
         public List<MediaModel> Media { get; set; }

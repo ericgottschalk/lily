@@ -62,8 +62,8 @@ namespace ENG.Lily.Service
                     UserId = t.UserId,
                     Hash = t.Hash,
                     Budget = t.Budget,
-                    CoverUrl = t.CoverUrl
-
+                    CoverUrl = t.CoverUrl,
+                    PrizesAndRewards = t.PrizesAndRewards
                 }).ToList();
 
             this.SetPlatformsRaw(projects);
@@ -167,8 +167,8 @@ namespace ENG.Lily.Service
                     UserId = t.UserId,
                     Hash = t.Hash,
                     Budget = t.Budget,
-                    CoverUrl = t.CoverUrl
-
+                    CoverUrl = t.CoverUrl,
+                    PrizesAndRewards = t.PrizesAndRewards
                 }).ToList();
 
             this.SetPlatformsRaw(projects);
@@ -296,8 +296,8 @@ namespace ENG.Lily.Service
                    UserId = t.UserId,
                    Hash = t.Hash,
                    Budget = t.Budget,
-                   CoverUrl = t.CoverUrl
-
+                   CoverUrl = t.CoverUrl,
+                   PrizesAndRewards = t.PrizesAndRewards
                }).ToList();
 
             this.SetPlatformsRaw(projects);

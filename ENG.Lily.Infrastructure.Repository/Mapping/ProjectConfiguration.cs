@@ -10,6 +10,7 @@ namespace ENG.Lily.Infrastructure.Repository.Mapping
         {
             builder.HasKey(t => t.Id);
             builder.Property(t => t.Description).HasMaxLength(1500).IsRequired();
+            builder.Property(t => t.PrizesAndRewards).HasMaxLength(1500).IsRequired();
             builder.Property(t => t.Name).HasMaxLength(250).IsRequired();
             builder.Property(t => t.WebSite).HasMaxLength(750);
             builder.Property(t => t.Hash).HasMaxLength(64).IsRequired();

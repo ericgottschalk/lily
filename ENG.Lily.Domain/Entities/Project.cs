@@ -14,6 +14,8 @@ namespace ENG.Lily.Domain.Entities
 
         public string Description { get; set; }
 
+        public string PrizesAndRewards { get; set; }
+
         public string CoverUrl { get; set; }
 
         public decimal Budget { get; set; }
