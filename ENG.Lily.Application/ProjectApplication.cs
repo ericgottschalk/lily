@@ -121,5 +121,12 @@ namespace ENG.Lily.Application
 
             return mapper.Map<FeedbackModel>(domainFeedback);
         }
+
+        public List<FeedbackModel> GetFeedbacks(int idProject)
+        {
+            var domainFeedbacks = this.projectService.GetFeedbacks(idProject);
+
+            return mapper.Map<List<FeedbackModel>>(domainFeedbacks);
+        }
     }
 }

@@ -240,5 +240,10 @@ namespace ENG.Lily.Service
         {
             return this.feedbackRepository.Get(t => t.UserId == idUser && t.ProjectId == idProject, t => t.User);
         }
+
+        public List<Feedback> GetFeedbacks(int idProject)
+        {
+            return this.feedbackRepository.Find(t => t.ProjectId == idProject, t => t.User).OrderByDescending(t => t.DateCreate).ToList();
+        }
     }
 }

@@ -160,6 +160,14 @@ namespace ENG.Lily.Api.Controllers.v1
             }
         }
 
+        [HttpGet("get-feedbacks/{idProject:int}")]
+        public IActionResult GetFeedbacks(int idProject)
+        {
+             var feedbacks = this.projectApplication.GetFeedbacks(idProject);
+
+             return Ok(feedbacks);
+        }
+
         private string SaveCoverImage(int idProject, IFormFile coverImage)
         {
             if (coverImage.Length > 0)

@@ -36,5 +36,7 @@ namespace ENG.Lily.Application.Contracts
         void Feedback(int idUser, int idProject, int rank, string text);
 
         FeedbackModel GetUserFeedback(int idUser, int idProject);
+
+        List<FeedbackModel> GetFeedbacks(int idProject);
     }
 }
