@@ -146,7 +146,34 @@ namespace ENG.Lily.Service
 
         public List<Project> GetTopRatedProjects()
         {
-            throw new NotImplementedException();
+            var projects = this.projectRepository.FindWithPlatforms(t => t.Genre, t => t.Media, t => t.User, t => t.Feedbacks).OrderByDescending(t => t.Feedbacks.Count)
+                .Select(t => new Project
+                {
+                    DateCreate = t.DateCreate,
+                    Description = t.Description,
+                    Genre = t.Genre,
+                    Id = t.Id,
+                    User = new User
+                    {
+                        Username = t.User.Username,
+                        Verified = t.User.Verified
+                    },
+                    Media = t.Media,
+                    Name = t.Name,
+                    Platforms = t.Platforms,
+                    TargetReleaseYear = t.TargetReleaseYear,
+                    WebSite = t.WebSite,
+                    GenreId = t.GenreId,
+                    UserId = t.UserId,
+                    Hash = t.Hash,
+                    Budget = t.Budget,
+                    CoverUrl = t.CoverUrl
+
+                }).ToList();
+
+            this.SetPlatformsRaw(projects);
+
+            return projects;
         }
 
         public List<Project> GetTopRatedProjects(int page, int pageSize)
@@ -244,6 +271,38 @@ namespace ENG.Lily.Service
         public List<Feedback> GetFeedbacks(int idProject)
         {
             return this.feedbackRepository.Find(t => t.ProjectId == idProject, t => t.User).OrderByDescending(t => t.DateCreate).ToList();
+        }
+
+        public List<Project> GetMostPopular()
+        {
+            var projects = this.projectRepository.FindWithPlatforms(t => t.Genre, t => t.Media, t => t.User, t => t.Funds).OrderByDescending(t => t.Funds.Count)
+               .Select(t => new Project
+               {
+                   DateCreate = t.DateCreate,
+                   Description = t.Description,
+                   Genre = t.Genre,
+                   Id = t.Id,
+                   User = new User
+                   {
+                       Username = t.User.Username,
+                       Verified = t.User.Verified
+                   },
+                   Media = t.Media,
+                   Name = t.Name,
+                   Platforms = t.Platforms,
+                   TargetReleaseYear = t.TargetReleaseYear,
+                   WebSite = t.WebSite,
+                   GenreId = t.GenreId,
+                   UserId = t.UserId,
+                   Hash = t.Hash,
+                   Budget = t.Budget,
+                   CoverUrl = t.CoverUrl
+
+               }).ToList();
+
+            this.SetPlatformsRaw(projects);
+
+            return projects;
         }
     }
 }

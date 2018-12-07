@@ -46,7 +46,7 @@ namespace ENG.Lily.Api.Controllers.v1
         [AllowAnonymous]
         public IActionResult GetTopRated()
         {
-            var projects = this.projectApplication.GetNewestProjects();
+            var projects = this.projectApplication.GetTopRatedProjects();
 
             return Ok(projects);
         }
@@ -64,7 +64,7 @@ namespace ENG.Lily.Api.Controllers.v1
         [AllowAnonymous]
         public IActionResult GetMostPopular()
         {
-            var projects = this.projectApplication.GetNewestProjects();
+            var projects = this.projectApplication.GetMostPopular();
 
             return Ok(projects);
         }

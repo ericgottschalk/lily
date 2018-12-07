@@ -128,5 +128,12 @@ namespace ENG.Lily.Application
 
             return mapper.Map<List<FeedbackModel>>(domainFeedbacks);
         }
+
+        public List<ProjectModel> GetMostPopular()
+        {
+            var domainProjects = this.projectService.GetMostPopular();
+
+            return mapper.Map<List<ProjectModel>>(domainProjects);
+        }
     }
 }

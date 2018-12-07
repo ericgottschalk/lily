@@ -23,6 +23,8 @@ namespace ENG.Lily.Service.Contracts
 
         List<Project> GetTopRatedProjects(int page, int pageSize);
 
+        List<Project> GetMostPopular();
+
         Project GetByHash(string hash);
 
         Project GetByHash(int idUser, string hash);
@@ -37,6 +39,6 @@ namespace ENG.Lily.Service.Contracts
 
         Feedback GetUserFeedbackFeedback(int idUser, int idProject);
 
-        List<Feedback> GetFeedbacks(int idProject);
+        List<Feedback> GetFeedbacks(int idProject);  
     }
 }

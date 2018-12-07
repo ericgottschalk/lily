@@ -23,6 +23,8 @@ namespace ENG.Lily.Application.Contracts
 
         List<ProjectModel> GetTopRatedProjects(int page, int pageSize);
 
+        List<ProjectModel> GetMostPopular();
+
         void SaveCoverImage(int id, string coverUrl);
 
         ProjectModel GetByHash(string hash);
