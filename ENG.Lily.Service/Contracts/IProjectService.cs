@@ -28,5 +28,7 @@ namespace ENG.Lily.Service.Contracts
         Project GetByHash(int idUser, string hash);
 
         void SaveCoverImage(int id, string coverUrl);
+
+        bool Contribue(Contribuition entity);
     }
 }

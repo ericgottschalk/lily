@@ -1,6 +1,7 @@
 ﻿using ENG.Lily.Domain.Entities;
 using ENG.Lily.Domain.Entities.ManyToMany;
 using ENG.Lily.Domain.Repositories;
+using ENG.Lily.Infrastructure.Extensions;
 using ENG.Lily.Service.Contracts;
 using System;
 using System.Collections.Generic;
@@ -14,13 +15,15 @@ namespace ENG.Lily.Service
         private IPlatformRepository platformRepository;
         private IGameGenreRepository gameGenreRepository;
         private IPlatformProjectRepository platformProjectRepository;
+        private IFundRepository fundRepository;
 
-        public ProjectService(IProjectRepository projectRepository, IPlatformRepository platformRepository, IGameGenreRepository gameGenreRepository, IPlatformProjectRepository platformProjectRepository)
+        public ProjectService(IProjectRepository projectRepository, IPlatformRepository platformRepository, IGameGenreRepository gameGenreRepository, IPlatformProjectRepository platformProjectRepository, IFundRepository fundRepository)
         {
             this.projectRepository = projectRepository;
             this.platformRepository = platformRepository;
             this.gameGenreRepository = gameGenreRepository;
             this.platformProjectRepository = platformProjectRepository;
+            this.fundRepository = fundRepository;
         }
 
         public Project Get(int id)
@@ -29,6 +32,7 @@ namespace ENG.Lily.Service
 
             project.User.Password = string.Empty;
             project.User.Email = string.Empty;
+            project.ReachedBudget = this.GetReachedBudget(project.Id);
 
             return project;
         }
@@ -54,7 +58,8 @@ namespace ENG.Lily.Service
                     WebSite = t.WebSite,
                     GenreId = t.GenreId,
                     UserId = t.UserId,
-                    Hash = t.Hash
+                    Hash = t.Hash,
+                    Budget = t.Budget
                 }).ToList();
 
             this.SetPlatformsRaw(projects);
@@ -150,6 +155,7 @@ namespace ENG.Lily.Service
             var project = this.projectRepository.GetWithPlatforms(t => t.Hash == hash, t => t.Genre, t => t.Media, t => t.User);
 
             this.SetPlatformsRaw(project);
+            project.ReachedBudget = this.GetReachedBudget(project.Id);
 
             return project;
         }
@@ -159,6 +165,7 @@ namespace ENG.Lily.Service
             var project = this.projectRepository.GetWithPlatforms(t => t.UserId == idUser && t.Hash == hash, t => t.Genre, t => t.Media, t => t.User);
 
             this.SetPlatformsRaw(project);
+            project.ReachedBudget = this.GetReachedBudget(project.Id);
 
             return project;
         }
@@ -170,6 +177,35 @@ namespace ENG.Lily.Service
             dbProject.CoverUrl = coverUrl;
 
             this.projectRepository.Update(dbProject);
+        }
+
+        public bool Contribue(Contribuition entity)
+        {
+            if (!entity.CardNumber.IsValidCard())
+            {
+                throw new Exception("Invalid card number.");
+            }
+
+            var fund = new Fund()
+            {
+                Aumont = entity.Aumont,
+                CreditCardLastFourDigits = entity.CardNumber.Substring(entity.CardNumber.Length - 4),
+                IsConfirmed = true,
+                ProjectId = entity.IdProject,
+                TaxId = entity.TaxId,
+                TransactionId = Guid.NewGuid().ToString().Replace("-", string.Empty),
+                UserId = entity.IdUser,             
+                DateCreate = DateTime.Now
+            };
+
+            this.fundRepository.Add(fund);
+
+            return true;
+        }
+
+        private decimal GetReachedBudget(int idProject)
+        {
+            return this.fundRepository.GetTotalByIdProject(idProject);
         }
     }
 }

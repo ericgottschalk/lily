@@ -107,6 +107,21 @@ namespace ENG.Lily.Api.Controllers.v1
             return PhysicalFile(file, "image/png");
         }
 
+        [HttpPost("contribue")]
+        public IActionResult Contribue([FromBody] ContribuitionModel model)
+        {
+            try
+            {
+                var sucess = this.projectApplication.Contribue(model);
+
+                return Ok(new { message = "Successful operation.", success = true });
+            }
+            catch (Exception ex)
+            {
+                return Ok(new { message = ex.Message, success = false });
+            }
+        }
+
         private string SaveCoverImage(int idProject, IFormFile coverImage)
         {
             if (coverImage.Length > 0)

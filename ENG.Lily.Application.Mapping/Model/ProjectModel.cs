@@ -33,6 +33,8 @@ namespace ENG.Lily.Application.Mapping.Model
 
         public int TargetReleaseYear { get; set; }
 
-        public decimal FundsAumont { get; set; }
+        public decimal Budget { get; set; }
+
+        public decimal ReachedBudget { get; set; }
     }
 }

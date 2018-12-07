@@ -16,6 +16,8 @@ namespace ENG.Lily.Domain.Entities
 
         public string CoverUrl { get; set; }
 
+        public decimal Budget { get; set; }
+
         public List<Media> Media { get; set; }
 
         public string WebSite { get; set; }
@@ -38,5 +40,8 @@ namespace ENG.Lily.Domain.Entities
 
         [NotMapped]
         public List<Platform> PlatformsRaw { get; set; }
+
+        [NotMapped]
+        public decimal ReachedBudget { get; set; }
     }
 }

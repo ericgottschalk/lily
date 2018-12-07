@@ -98,5 +98,11 @@ namespace ENG.Lily.Application
 
             return mapper.Map<ProjectModel>(domainProject);
         }
+
+        public bool Contribue(ContribuitionModel model)
+        {
+            var domainEntity = mapper.Map<Contribuition>(model);
+            return this.projectService.Contribue(domainEntity);
+        }
     }
 }

@@ -17,6 +17,7 @@ namespace ENG.Lily.Application.Mapping
                 config.AddProfile(new PlatformProfile());
                 config.AddProfile(new ProjectProfile());
                 config.AddProfile(new PlatformProjectModelProfile());
+                config.AddProfile(new ContribuitionProfile());
             });
 
             var mapper = profiles.CreateMapper();

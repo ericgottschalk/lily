@@ -1,8 +1,5 @@
 ﻿using ENG.Lily.Domain.Common;
-using ENG.Lily.Domain.Enum;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ENG.Lily.Domain.Entities
 {
@@ -18,7 +15,7 @@ namespace ENG.Lily.Domain.Entities
 
         public string CreditCardLastFourDigits { get; set; }
 
-        public creditCardCompany CreditCardCompany { get; set; }
+        public string TaxId { get; set; }
 
         public string TransactionId { get; set; }
 

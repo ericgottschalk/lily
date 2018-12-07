@@ -28,5 +28,7 @@ namespace ENG.Lily.Application.Contracts
         ProjectModel GetByHash(string hash);
 
         ProjectModel GetByHash(int idUser, string hash);
+
+        bool Contribue(ContribuitionModel model);
     }
 }
