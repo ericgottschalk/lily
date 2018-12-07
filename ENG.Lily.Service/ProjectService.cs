@@ -238,7 +238,7 @@ namespace ENG.Lily.Service
 
         public Feedback GetUserFeedbackFeedback(int idUser, int idProject)
         {
-            return this.feedbackRepository.Get(t => t.UserId == idUser && t.ProjectId == idProject);
+            return this.feedbackRepository.Get(t => t.UserId == idUser && t.ProjectId == idProject, t => t.User);
         }
     }
 }

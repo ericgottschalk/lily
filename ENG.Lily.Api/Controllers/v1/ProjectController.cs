@@ -131,11 +131,11 @@ namespace ENG.Lily.Api.Controllers.v1
         }
 
         [HttpPost("feedback")]
-        public IActionResult Feedback(int idUser, int idProject, int rank, string text)
+        public IActionResult Feedback([FromBody] UserFeedbackModel model)
         {
             try
             {
-                this.projectApplication.Feedback(idUser, idProject, rank, text);
+                this.projectApplication.Feedback(model.IdUser, model.IdProject, model.Rank, model.Text);
 
                 return Ok(new { message = "Successful operation.", success = true });
             }
@@ -152,7 +152,7 @@ namespace ENG.Lily.Api.Controllers.v1
             {
                 var feedback = this.projectApplication.GetUserFeedback(idUser, idProject);
 
-                return Ok(feedback);
+                return Ok(new { message = "Successful operation.", success = true, feedback });
             }
             catch (Exception ex)
             {

@@ -15,6 +15,14 @@ namespace ENG.Lily.Application.Mapping.Model
         public string Text { get; set; }
 
         public DateTime DateCreate { get; set; }
+
+        public string Rank
+        {
+            get
+            {
+                return this.Level.ToString();
+            }
+        }
     }
 
     public enum feedbackModel
