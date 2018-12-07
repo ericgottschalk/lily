@@ -17,5 +17,10 @@ namespace ENG.Lily.Infrastructure.Repository.Repositories
         {
             return this.context.Funds.Where(t => t.ProjectId == idProject && t.IsConfirmed).Sum(t => t.Aumont);
         }
+
+        public decimal GetTotalByIdProjectIdUser(int idProject, int idUser)
+        {
+            return this.context.Funds.Where(t => t.ProjectId == idProject && t.UserId == idUser && t.IsConfirmed).Sum(t => t.Aumont);
+        }
     }
 }

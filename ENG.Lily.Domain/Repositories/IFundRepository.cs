@@ -6,5 +6,7 @@ namespace ENG.Lily.Domain.Repositories
     public interface IFundRepository : IRepository<Fund>
     {
         decimal GetTotalByIdProject(int idProject);
+
+        decimal GetTotalByIdProjectIdUser(int idProject, int idUser);
     }
 }

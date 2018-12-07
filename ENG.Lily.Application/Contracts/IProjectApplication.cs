@@ -30,5 +30,7 @@ namespace ENG.Lily.Application.Contracts
         ProjectModel GetByHash(int idUser, string hash);
 
         bool Contribue(ContribuitionModel model);
+
+        decimal GetUserTotalContribuition(int idUser, int idProject);
     }
 }

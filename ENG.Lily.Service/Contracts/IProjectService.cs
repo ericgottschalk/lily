@@ -30,5 +30,7 @@ namespace ENG.Lily.Service.Contracts
         void SaveCoverImage(int id, string coverUrl);
 
         bool Contribue(Contribuition entity);
+
+        decimal GetUserTotalContribuition(int idUser, int idProject);
     }
 }

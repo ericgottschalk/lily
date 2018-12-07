@@ -87,7 +87,7 @@ namespace ENG.Lily.Api.Controllers.v1
             return Ok();
         }
 
-        [HttpGet("cover/{idProject:int}/{filename}")]
+        [HttpPost("upload-cover-image")]
         public IActionResult UploadCoverImage([FromForm] UploadCoverImageModel formData)
         {
             if (formData.File != null)
@@ -120,6 +120,14 @@ namespace ENG.Lily.Api.Controllers.v1
             {
                 return Ok(new { message = ex.Message, success = false });
             }
+        }
+
+        [HttpGet("get-user-contribuition/{idUser:int}/{idProject:int}")]
+        public IActionResult GetUserTotalContribuition(int idUser, int idProject)
+        {
+            var total = this.projectApplication.GetUserTotalContribuition(idUser, idProject);
+
+            return Ok(total);
         }
 
         private string SaveCoverImage(int idProject, IFormFile coverImage)

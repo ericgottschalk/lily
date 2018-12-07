@@ -104,5 +104,10 @@ namespace ENG.Lily.Application
             var domainEntity = mapper.Map<Contribuition>(model);
             return this.projectService.Contribue(domainEntity);
         }
+
+        public decimal GetUserTotalContribuition(int idUser, int idProject)
+        {
+            return this.projectService.GetUserTotalContribuition(idUser, idProject);
+        }
     }
 }

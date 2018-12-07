@@ -59,7 +59,9 @@ namespace ENG.Lily.Service
                     GenreId = t.GenreId,
                     UserId = t.UserId,
                     Hash = t.Hash,
-                    Budget = t.Budget
+                    Budget = t.Budget,
+                    CoverUrl = t.CoverUrl
+                    
                 }).ToList();
 
             this.SetPlatformsRaw(projects);
@@ -206,6 +208,11 @@ namespace ENG.Lily.Service
         private decimal GetReachedBudget(int idProject)
         {
             return this.fundRepository.GetTotalByIdProject(idProject);
+        }
+
+        public decimal GetUserTotalContribuition(int idUser, int idProject)
+        {
+            return this.fundRepository.GetTotalByIdProjectIdUser(idProject, idUser);
         }
     }
 }
