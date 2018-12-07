@@ -145,7 +145,7 @@ namespace ENG.Lily.Api.Controllers.v1
             }
         }
 
-        [HttpGet("get-user-feedback")]
+        [HttpGet("get-user-feedback/{idUser:int}/{idProject:int}")]
         public IActionResult GetUserFeedback(int idUser, int idProject)
         {
             try
